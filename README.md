@@ -35,7 +35,7 @@ GitHub Pages is served from the `main` branch, root folder (`/`):
 
 ## Adding a new app
 
-1. Create a folder named after the app (e.g. `scanstock/`).
+1. Create a folder named after the app (e.g. `myapp/`).
 2. Add `index.html` (+ optional `privacy.html`, `terms.html`) and assets inside it.
 3. Use **relative paths only** (`./…`) so the site works under its sub-path.
 4. Add a row to the **Apps** table above.
