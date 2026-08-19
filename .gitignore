@@ -1,0 +1,57 @@
+# ---------------------------------------------------------------------------
+# MMP Studio — static marketing sites (GitHub Pages)
+# ---------------------------------------------------------------------------
+
+# macOS
+.DS_Store
+.DS_Store?
+._*
+.AppleDouble
+.LSOverride
+.Spotlight-V100
+.Trashes
+Icon?
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Linux
+*~
+.directory
+.Trash-*
+
+# Editors / IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*.sublime-workspace
+*.sublime-project
+.history/
+
+# Logs & temp
+*.log
+*.tmp
+*.temp
+*.bak
+
+# Environment / secrets
+.env
+.env.*
+!.env.example
+
+# Optional tooling (only if you add a build later)
+node_modules/
+npm-debug.log*
+yarn-error.log*
+.cache/
+dist/
+.parcel-cache/
+
+# Local server / preview artifacts
+.jekyll-cache/
+_site/
