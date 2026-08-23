@@ -13,6 +13,7 @@ dependencies.
 | App | Description | App Store | Google Play |
 |-----|-------------|-----------|-------------|
 | **Notaro** | 100% offline invoicing & quote app for freelancers and small businesses. | [App Store](https://apps.apple.com/app/notaro/id6802968660) | [Google Play](https://play.google.com/store/apps/details?id=com.mmp.notaro) |
+| **Skanzo** | 100% offline barcode scanner & stock inventory app for shops and warehouses. | _Coming soon_ | _Coming soon_ |
 
 ## Live pages
 
@@ -22,9 +23,12 @@ GitHub account/organization name once the repo is pushed):
 - Notaro — landing: `/notaro/`
 - Notaro — Privacy Policy: `/notaro/privacy.html`
 - Notaro — Terms of Service (EULA): `/notaro/terms.html`
+- Skanzo — landing: `/skanzo/`
+- Skanzo — Privacy Policy: `/skanzo/privacy.html`
+- Skanzo — Terms of Service (EULA): `/skanzo/terms.html`
 
-> The `/notaro/privacy.html` URL is the one to provide in App Store Connect and
-> Google Play Console as the app's privacy policy link.
+> The `/notaro/privacy.html` and `/skanzo/privacy.html` URLs are the ones to provide
+> in App Store Connect and Google Play Console as each app's privacy policy link.
 
 ## Deploying
 
