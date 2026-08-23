@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Terms of Service — Skanzo</title>
+  <meta name="description"
+    content="Terms of Service and End User License Agreement (EULA) for Skanzo mobile barcode scanner and inventory management application.">
+  <link rel="icon" type="image/png" href="./icon.png">
+
+  <link rel="stylesheet" href="./fonts.css">
+
+  <style>
+    :root {
+      --bg-dark: #0A0F1D;
+      --bg-surface: #111827;
+      --card-bg-gradient: linear-gradient(145deg, rgba(19, 28, 46, 0.88) 0%, rgba(15, 23, 42, 0.96) 100%);
+      --border-color: rgba(37, 53, 79, 0.7);
+      --border-hover: rgba(6, 182, 212, 0.55);
+      --primary-emerald: #10B981;
+      --emerald-dark: #059669;
+      --accent-cyan: #06B6D4;
+      --accent-teal: #14B8A6;
+      --gold-pro: #F59E0B;
+      --text-primary: #F8FAFC;
+      --text-secondary: #94A3B8;
+      --text-muted: #64748B;
+      --radius-sm: 10px;
+      --radius-md: 16px;
+      --radius-lg: 20px;
+      --radius-full: 9999px;
+      --shadow-glow: 0 0 50px rgba(6, 182, 212, 0.15);
+      --shadow-card: 0 12px 36px -8px rgba(0, 0, 0, 0.6);
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg-dark);
+      color: var(--text-primary);
+      line-height: 1.75;
+    }
+
+    body {
+      background: radial-gradient(circle at 50% 0%, rgba(6, 182, 212, 0.08) 0%, rgba(10, 15, 29, 1) 60%);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .container {
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 0 24px;
+      width: 100%;
+    }
+
+    /* Header */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(10, 15, 29, 0.88);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(37, 53, 79, 0.6);
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 76px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      text-decoration: none;
+      color: var(--text-primary);
+    }
+
+    .brand img {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(16, 185, 129, 0.35);
+      transition: var(--transition);
+      flex-shrink: 0;
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .brand-name {
+      font-weight: 800;
+      font-size: 1.25rem;
+      letter-spacing: -0.02em;
+      background: linear-gradient(135deg, #FFFFFF 0%, #CBD5E1 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      white-space: nowrap;
+    }
+
+    .brand-badge {
+      font-size: 0.68rem;
+      font-weight: 700;
+      color: var(--primary-emerald);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      white-space: nowrap;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: var(--transition);
+      white-space: nowrap;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--primary-emerald);
+    }
+
+    .btn-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--card-bg-gradient);
+      border: 1px solid var(--border-color);
+      color: var(--text-primary);
+      padding: 9px 20px;
+      border-radius: var(--radius-full);
+      font-weight: 600;
+      font-size: 0.85rem;
+      text-decoration: none;
+      transition: var(--transition);
+      white-space: nowrap !important;
+      box-shadow: var(--shadow-card);
+    }
+
+    .btn-back:hover {
+      border-color: var(--primary-emerald);
+      color: var(--primary-emerald);
+      transform: translateY(-2px);
+    }
+
+    /* Mobile Hamburger Button */
+    .mobile-toggle {
+      display: none;
+      background: rgba(19, 28, 46, 0.8);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      color: var(--text-primary);
+      cursor: pointer;
+      padding: 8px 12px;
+      transition: var(--transition);
+    }
+
+    .mobile-toggle:hover {
+      border-color: var(--primary-emerald);
+      color: var(--primary-emerald);
+    }
+
+    /* Enhanced Floating Glassmorphism Mobile Menu Drawer */
+    .mobile-menu {
+      display: flex;
+      flex-direction: column;
+      position: fixed;
+      top: 76px;
+      left: 0;
+      right: 0;
+      background: rgba(10, 15, 29, 0.96);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--accent-cyan);
+      padding: 20px 24px 28px;
+      z-index: 999;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), 0 0 30px rgba(6, 182, 212, 0.15);
+      transform: translateY(-12px);
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      pointer-events: none;
+    }
+
+    .mobile-menu.active {
+      transform: translateY(0);
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+
+    .mobile-menu a {
+      color: var(--text-primary);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1.05rem;
+      padding: 14px 0;
+      border-bottom: 1px solid rgba(37, 53, 79, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: var(--transition);
+    }
+
+    .mobile-menu a:hover,
+    .mobile-menu a.active {
+      color: var(--accent-cyan);
+      padding-left: 8px;
+    }
+
+    /* Page Header */
+    .terms-header {
+      padding: 60px 0 40px;
+      text-align: center;
+      border-bottom: 1px solid var(--border-color);
+      margin-bottom: 50px;
+    }
+
+    .terms-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 18px;
+      border-radius: var(--radius-full);
+      background: rgba(6, 182, 212, 0.1);
+      border: 1px solid rgba(6, 182, 212, 0.3);
+      color: var(--accent-cyan);
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+      white-space: nowrap;
+    }
+
+    .terms-title {
+      font-size: 2.8rem;
+      font-weight: 800;
+      margin-bottom: 16px;
+      letter-spacing: -0.02em;
+    }
+
+    .terms-meta {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+    }
+
+    /* Main Grid with Sticky Sidebar TOC */
+    .doc-layout {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 40px;
+      margin-bottom: 80px;
+      align-items: start;
+    }
+
+    .toc-sidebar {
+      position: sticky;
+      top: 100px;
+      background: var(--card-bg-gradient);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      box-shadow: var(--shadow-card);
+    }
+
+    .toc-title {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--accent-cyan);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 16px;
+      white-space: nowrap;
+    }
+
+    .toc-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .toc-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+      transition: var(--transition);
+      display: block;
+      padding: 6px 10px;
+      border-radius: var(--radius-sm);
+      white-space: nowrap;
+    }
+
+    .toc-links a:hover,
+    .toc-links a.active {
+      color: var(--accent-cyan);
+      background: rgba(6, 182, 212, 0.12);
+    }
+
+    /* Harmonized Terms Section Cards */
+    .terms-section {
+      background: var(--card-bg-gradient);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 36px;
+      margin-bottom: 32px;
+      scroll-margin-top: 100px;
+      transition: var(--transition);
+      box-shadow: var(--shadow-card);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .terms-section:hover {
+      border-color: var(--border-hover);
+    }
+
+    .section-num {
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--accent-cyan);
+      font-size: 0.85rem;
+      font-weight: 800;
+      background: rgba(6, 182, 212, 0.1);
+      border: 1px solid rgba(6, 182, 212, 0.25);
+      padding: 3px 10px;
+      border-radius: var(--radius-full);
+      display: inline-block;
+      margin-bottom: 12px;
+      white-space: nowrap;
+    }
+
+    .terms-section h2 {
+      font-size: 1.55rem;
+      font-weight: 800;
+      margin-bottom: 16px;
+      color: var(--text-primary);
+    }
+
+    .terms-section p {
+      color: var(--text-secondary);
+      font-size: 1rem;
+      margin-bottom: 16px;
+      line-height: 1.7;
+    }
+
+    .terms-section p:last-child {
+      margin-bottom: 0;
+    }
+
+    .terms-section ul {
+      margin-left: 24px;
+      margin-bottom: 16px;
+      color: var(--text-secondary);
+    }
+
+    .terms-section li {
+      margin-bottom: 8px;
+    }
+
+    /* Harmonized Highlight Sub-Box */
+    .highlight-box {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-left: 4px solid var(--gold-pro);
+      padding: 22px 26px;
+      border-radius: var(--radius-md);
+      margin: 20px 0;
+      box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5);
+    }
+
+    .highlight-box h4 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--gold-pro);
+      margin-bottom: 8px;
+    }
+
+    .highlight-box p {
+      font-size: 0.95rem;
+      margin-bottom: 0;
+    }
+
+    /* Floating Back To Top Button */
+    .back-to-top {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--card-bg-gradient);
+      border: 1px solid var(--accent-cyan);
+      color: var(--accent-cyan);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 90;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6), 0 0 15px rgba(6, 182, 212, 0.2);
+      transition: var(--transition);
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .back-to-top.visible {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .back-to-top:hover {
+      background: var(--accent-cyan);
+      color: #000000;
+      transform: translateY(-4px);
+    }
+
+    /* Footer */
+    footer {
+      background: #060913;
+      border-top: 1px solid var(--border-color);
+      padding: 60px 0 30px;
+      margin-top: auto;
+    }
+
+    .footer-content {
+      display: grid;
+      grid-template-columns: 2fr repeat(3, 1fr);
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+
+    .footer-brand p {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      margin-top: 16px;
+      max-width: 320px;
+    }
+
+    .footer-col h4 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+      color: var(--text-primary);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .footer-col ul {
+      list-style: none;
+    }
+
+    .footer-col li {
+      margin-bottom: 12px;
+    }
+
+    .footer-col a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: var(--transition);
+      white-space: nowrap;
+    }
+
+    .footer-col a:hover {
+      color: var(--primary-emerald);
+    }
+
+    .footer-bottom {
+      padding-top: 30px;
+      border-top: 1px solid rgba(37, 53, 79, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    /* Responsive Breakpoints */
+    @media (max-width: 992px) {
+      .nav-links {
+        display: none !important;
+      }
+
+      .btn-back {
+        display: none !important;
+      }
+
+      .mobile-toggle {
+        display: flex !important;
+      }
+
+      .doc-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .toc-sidebar {
+        display: none;
+      }
+
+      .footer-content {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .terms-title {
+        font-size: 2.1rem;
+      }
+
+      .terms-section {
+        padding: 24px;
+      }
+
+      .footer-content {
+        grid-template-columns: 1fr;
+      }
+
+      .brand-badge {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <header>
+    <div class="container">
+      <nav>
+        <a href="index.html" class="brand">
+          <img src="./icon.png" alt="Skanzo Logo">
+          <div class="brand-text">
+            <span class="brand-name">Skanzo</span>
+            <span class="brand-badge">Offline Barcode & Inventory</span>
+          </div>
+        </a>
+
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+          <li><a href="terms.html" class="active">Terms of Use</a></li>
+        </ul>
+
+        <a href="index.html" class="btn-back">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <polyline points="15 18 9 12 15 6"></polyline>
+          </svg>
+          Back to Site
+        </a>
+
+        <button class="mobile-toggle" id="menuToggle" aria-label="Toggle Menu" aria-expanded="false">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Floating Glassmorphism Mobile Dropdown Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">
+      <span>Home</span>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+        <polyline points="9 18 15 12 9 6"></polyline>
+      </svg>
+    </a>
+    <a href="privacy.html">
+      <span>Privacy Policy</span>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+        <polyline points="9 18 15 12 9 6"></polyline>
+      </svg>
+    </a>
+    <a href="terms.html" class="active">
+      <span>Terms of Service</span>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+        <polyline points="9 18 15 12 9 6"></polyline>
+      </svg>
+    </a>
+  </div>
+
+  <!-- Page Header -->
+  <div class="container">
+    <div class="terms-header">
+      <div class="terms-badge">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+          <polyline points="14 2 14 8 20 8"></polyline>
+        </svg>
+        End User License Agreement (EULA)
+      </div>
+      <h1 class="terms-title">Terms of Service & EULA</h1>
+      <div class="terms-meta">
+        Last Updated: August 13, 2026 &bull; Skanzo
+      </div>
+    </div>
+  </div>
+
+  <!-- Document Grid -->
+  <main class="container doc-layout">
+
+    <!-- Sticky Table of Contents Sidebar -->
+    <aside class="toc-sidebar">
+      <div class="toc-title">Terms Sections</div>
+      <ul class="toc-links">
+        <li><a href="#acceptance">01. Acceptance</a></li>
+        <li><a href="#license">02. License Grant</a></li>
+        <li><a href="#pricing-terms">03. Free vs. Pro Tier</a></li>
+        <li><a href="#backup">04. Local Data & Backup</a></li>
+        <li><a href="#ip">05. Intellectual Property</a></li>
+        <li><a href="#hardware">06. Printing Hardware</a></li>
+        <li><a href="#warranties">07. Disclaimer</a></li>
+        <li><a href="#liability">08. Liability Limit</a></li>
+        <li><a href="#changes">09. Changes to Terms</a></li>
+        <li><a href="#contact">10. Contact Info</a></li>
+      </ul>
+    </aside>
+
+    <!-- Document Content -->
+    <div class="doc-content">
+
+      <!-- Section 1 -->
+      <article class="terms-section" id="acceptance">
+        <span class="section-num">Section 01</span>
+        <h2>Acceptance of Terms</h2>
+        <p>By downloading, installing, accessing, or using <strong>Skanzo</strong> ("the Application"), you
+          enter into a binding legal agreement with the developer of Skanzo ("Licensor", "we", "us", or
+          "our").</p>
+        <p>If you do not agree to these Terms of Service and End User License Agreement (EULA), do not download,
+          install, or use the Application. Your continued use of the Application signifies your explicit acceptance of
+          these Terms.</p>
+      </article>
+
+      <!-- Section 2 -->
+      <article class="terms-section" id="license">
+        <span class="section-num">Section 02</span>
+        <h2>License Grant & Permitted Use</h2>
+        <p>Subject to your compliance with these Terms, Licensor grants you a personal, worldwide, non-exclusive,
+          non-transferable, non-sublicensable, revocable license to install and use Skanzo on compatible iOS
+          or Android mobile devices that you own or control.</p>
+        <p><strong>Permitted Use:</strong> You may use the Application for personal, retail store, commercial warehouse,
+          or organizational inventory counts, barcode scanning, label printing, and PDF/Excel reporting.</p>
+      </article>
+
+      <!-- Section 3 -->
+      <article class="terms-section" id="pricing-terms">
+        <span class="section-num">Section 03</span>
+        <h2>Free Tier vs. Skanzo Pro Purchase</h2>
+        <p>Skanzo offers both a free tier and a paid non-consumable <strong>Skanzo Pro Lifetime
+            Purchase</strong> (€29.99 excluding tax, or equivalent in your local App Store / Google Play Store currency; applicable local taxes such as VAT are added at checkout).</p>
+
+        <ul>
+          <li><strong>Free Tier:</strong> Includes access to basic scanning, 1 active inventory counting session, up to
+            30 scanned items per count, and limited preview exports.</li>
+          <li><strong>Skanzo Pro (Lifetime Access):</strong> Unlocks unlimited counting sessions, unlimited items per
+            session, full certified PDF exports, unlimited Excel/CSV imports and exports, multi-session consolidation,
+            thermal label generator, and custom logo customization.</li>
+        </ul>
+
+        <div class="highlight-box">
+          <h4>👑 Non-Consumable Lifetime Purchase & Regional Currency Terms</h4>
+          <p>Skanzo Pro is a one-time purchase billed through your Apple App Store or Google Play Store account. It
+            is NOT a subscription and does not incur recurring fees. The standard reference price is €29.99 excluding tax;
+            applicable local taxes (such as VAT) are added at checkout. This reference price is converted
+            automatically by Apple or Google into your regional store currency based on your account's store location.
+            You may restore your Pro unlock on any compatible device logged into the same Apple ID or Google Account
+            using the "Restore Purchases" feature in the app settings.</p>
+        </div>
+      </article>
+
+      <!-- Section 4 -->
+      <article class="terms-section" id="backup">
+        <span class="section-num">Section 04</span>
+        <h2>On-Device Storage & User Backup Responsibility</h2>
+        <p>Skanzo is engineered as a <strong>100% offline application</strong>. All inventory sessions, stock
+          counts, scanned product catalogs, unit prices, and exported documents are written directly to your local
+          device sandbox storage.</p>
+        <p><strong>Your Responsibility:</strong> Because we do not store, host, or back up your data on remote cloud
+          servers, you are solely responsible for creating regular backups of your device and exporting important
+          PDF/Excel reports. Uninstalling the app or resetting your device will permanently erase all local databases.
+          Licensor has no technical capability to recover lost local data.</p>
+      </article>
+
+      <!-- Section 5 -->
+      <article class="terms-section" id="ip">
+        <span class="section-num">Section 05</span>
+        <h2>Intellectual Property Rights</h2>
+        <p>All title, ownership rights, and intellectual property rights in and to Skanzo (including but not
+          limited to source code, user interface designs, graphical elements, brand icons, document formatting
+          templates, and text) belong exclusively to the Licensor.</p>
+        <p>You agree not to modify, reverse engineer, decompile, disassemble, attempt to derive source code, create
+          derivative works, or redistribute the Application or any component thereof.</p>
+      </article>
+
+      <!-- Section 6 -->
+      <article class="terms-section" id="hardware">
+        <span class="section-num">Section 06</span>
+        <h2>Third-Party Services & Printing Hardware</h2>
+        <p>The Application includes features for exporting PDF files and printing barcode labels to thermal printers or
+          standard AirPrint / Mopria wireless printers. Licensor does not guarantee compatibility with every third-party
+          printer model or external hardware scanner accessory.</p>
+      </article>
+
+      <!-- Section 7 -->
+      <article class="terms-section" id="warranties">
+        <span class="section-num">Section 07</span>
+        <h2>Disclaimer of Warranties</h2>
+        <p>THE APPLICATION IS PROVIDED ON AN "AS IS" AND "AS AVAILABLE" BASIS, WITHOUT WARRANTIES OF ANY KIND, EXPRESS
+          OR IMPLIED, INCLUDING BUT NOT LIMITED TO WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE,
+          NON-INFRINGEMENT, OR ACCURACY OF BARCODE DECODING AND STOCK COUNT TOTALS.</p>
+        <p>WHILE SKANZO IS DESIGNED FOR HIGH-PRECISION INVENTORY MANAGEMENT, USERS ARE ENCOURAGED TO AUDIT
+          AND VERIFY CRITICAL FINANCIAL OR QUANTITATIVE INVENTORY AUDITS BEFORE SUBMITTING OFFICIAL TAX OR AUDIT
+          DOCUMENTS.</p>
+      </article>
+
+      <!-- Section 8 -->
+      <article class="terms-section" id="liability">
+        <span class="section-num">Section 08</span>
+        <h2>Limitation of Liability</h2>
+        <p>TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, IN NO EVENT SHALL LICENSOR BE LIABLE FOR ANY INDIRECT,
+          INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, INCLUDING WITHOUT LIMITATION LOSS OF PROFITS, DATA,
+          GOODWILL, OR BUSINESS INTERRUPTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR INABILITY TO USE THE
+          APPLICATION.</p>
+        <p>IN NO EVENT SHALL LICENSOR'S AGGREGATE LIABILITY FOR ALL CLAIMS EXCEED THE AMOUNT ACTUALLY PAID BY YOU FOR
+          THE SKANZO PRO UPGRADE (IF ANY).</p>
+      </article>
+
+      <!-- Section 9 -->
+      <article class="terms-section" id="changes">
+        <span class="section-num">Section 09</span>
+        <h2>Modifications & Termination</h2>
+        <p>Licensor reserves the right to modify these Terms at any time. Updated terms will be published on this page
+          with an updated "Last Updated" date. Continued use of the Application following any updates constitutes
+          acceptance of the revised Terms.</p>
+      </article>
+
+      <!-- Section 10 -->
+      <article class="terms-section" id="contact">
+        <span class="section-num">Section 10</span>
+        <h2>Contact Information</h2>
+        <p>If you have any questions regarding these Terms of Service or End User License Agreement, please contact us
+          at:</p>
+        <p><strong>Support Email:</strong> <a href="mailto:puludisu.apps@gmail.com"
+            style="color: var(--primary-emerald); font-weight: 600;">puludisu.apps@gmail.com</a></p>
+      </article>
+
+    </div>
+  </main>
+
+  <!-- Floating Back To Top Button -->
+  <button class="back-to-top" id="backToTop" aria-label="Back to Top">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+      <polyline points="18 15 12 9 6 15"></polyline>
+    </svg>
+  </button>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <a href="index.html" class="brand">
+            <img src="./icon.png" alt="Skanzo Logo">
+            <div class="brand-text">
+              <span class="brand-name">Skanzo</span>
+              <span class="brand-badge">Barcode & Inventory</span>
+            </div>
+          </a>
+          <p>Skanzo is the 100% offline, privacy-first barcode inventory application for retail stores,
+            warehouses, and stock managers.</p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Navigation</h4>
+          <ul>
+            <li><a href="index.html#features">Features</a></li>
+            <li><a href="index.html#workflow">How It Works</a></li>
+            <li><a href="index.html#pricing">Pricing</a></li>
+            <li><a href="index.html#faq">FAQ</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="privacy.html">Privacy Policy</a></li>
+            <li><a href="terms.html">Terms of Service (EULA)</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Contact & Support</h4>
+          <ul>
+            <li><a href="mailto:puludisu.apps@gmail.com">puludisu.apps@gmail.com</a></li>
+            <li><a href="privacy.html#contact">Privacy Enquiries</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>&copy; 2026 Skanzo. All rights reserved.</div>
+        <div>100% On-Device Data Storage &bull; No Cloud Tracking</div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Intersection Observer for highlighting current TOC link
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = entry.target.getAttribute('id');
+          document.querySelectorAll('.toc-links a').forEach(link => {
+            if (link.getAttribute('href') === `#${id}`) {
+              link.classList.add('active');
+            } else {
+              link.classList.remove('active');
+            }
+          });
+        }
+      });
+    }, { threshold: 0.4 });
+
+    document.querySelectorAll('.terms-section').forEach(section => {
+      observer.observe(section);
+    });
+
+    // Robust Auto-Closing Mobile Menu Logic
+    const menuToggle = document.getElementById('menuToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    function closeMobileMenu() {
+      if (mobileMenu && mobileMenu.classList.contains('active')) {
+        mobileMenu.classList.remove('active');
+        if (menuToggle) menuToggle.setAttribute('aria-expanded', 'false');
+      }
+    }
+
+    if (menuToggle && mobileMenu) {
+      menuToggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isActive = mobileMenu.classList.toggle('active');
+        menuToggle.setAttribute('aria-expanded', isActive ? 'true' : 'false');
+      });
+
+      // Close when clicking ANY link inside mobileMenu
+      mobileMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          closeMobileMenu();
+        });
+      });
+
+      // Close when clicking OUTSIDE the mobileMenu and menuToggle
+      document.addEventListener('click', (e) => {
+        if (!mobileMenu.contains(e.target) && !menuToggle.contains(e.target)) {
+          closeMobileMenu();
+        }
+      });
+
+      // Close on Escape key press
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeMobileMenu();
+      });
+
+      // Close on window resize to desktop
+      window.addEventListener('resize', () => {
+        if (window.innerWidth > 992) closeMobileMenu();
+      });
+    }
+
+    // Scroll to Top Button Visibility & Logic
+    const backToTopBtn = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 400) {
+        backToTopBtn.classList.add('visible');
+      } else {
+        backToTopBtn.classList.remove('visible');
+      }
+    });
+
+    backToTopBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  </script>
+
+</body>
+
+</html>

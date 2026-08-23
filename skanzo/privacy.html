@@ -1,0 +1,1001 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy — Skanzo</title>
+  <meta name="description"
+    content="Privacy Policy for Skanzo. Learn about our 100% offline architecture, zero data collection policy, and local on-device storage.">
+  <link rel="icon" type="image/png" href="./icon.png">
+
+  <link rel="stylesheet" href="./fonts.css">
+
+  <style>
+    :root {
+      --bg-dark: #0A0F1D;
+      --bg-surface: #111827;
+      --card-bg-gradient: linear-gradient(145deg, rgba(19, 28, 46, 0.88) 0%, rgba(15, 23, 42, 0.96) 100%);
+      --border-color: rgba(37, 53, 79, 0.7);
+      --border-hover: rgba(16, 185, 129, 0.55);
+      --primary-emerald: #10B981;
+      --emerald-dark: #059669;
+      --accent-cyan: #06B6D4;
+      --accent-teal: #14B8A6;
+      --gold-pro: #F59E0B;
+      --text-primary: #F8FAFC;
+      --text-secondary: #94A3B8;
+      --text-muted: #64748B;
+      --radius-sm: 10px;
+      --radius-md: 16px;
+      --radius-lg: 20px;
+      --radius-full: 9999px;
+      --shadow-glow: 0 0 50px rgba(16, 185, 129, 0.15);
+      --shadow-card: 0 12px 36px -8px rgba(0, 0, 0, 0.6);
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg-dark);
+      color: var(--text-primary);
+      line-height: 1.75;
+    }
+
+    body {
+      background: radial-gradient(circle at 50% 0%, rgba(16, 185, 129, 0.08) 0%, rgba(10, 15, 29, 1) 60%);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .container {
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 0 24px;
+      width: 100%;
+    }
+
+    /* Header */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(10, 15, 29, 0.88);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(37, 53, 79, 0.6);
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 76px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      text-decoration: none;
+      color: var(--text-primary);
+    }
+
+    .brand img {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(16, 185, 129, 0.35);
+      transition: var(--transition);
+      flex-shrink: 0;
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .brand-name {
+      font-weight: 800;
+      font-size: 1.25rem;
+      letter-spacing: -0.02em;
+      background: linear-gradient(135deg, #FFFFFF 0%, #CBD5E1 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      white-space: nowrap;
+    }
+
+    .brand-badge {
+      font-size: 0.68rem;
+      font-weight: 700;
+      color: var(--primary-emerald);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      white-space: nowrap;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: var(--transition);
+      white-space: nowrap;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--primary-emerald);
+    }
+
+    .btn-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--card-bg-gradient);
+      border: 1px solid var(--border-color);
+      color: var(--text-primary);
+      padding: 9px 20px;
+      border-radius: var(--radius-full);
+      font-weight: 600;
+      font-size: 0.85rem;
+      text-decoration: none;
+      transition: var(--transition);
+      white-space: nowrap !important;
+      box-shadow: var(--shadow-card);
+    }
+
+    .btn-back:hover {
+      border-color: var(--primary-emerald);
+      color: var(--primary-emerald);
+      transform: translateY(-2px);
+    }
+
+    /* Mobile Hamburger Button */
+    .mobile-toggle {
+      display: none;
+      background: rgba(19, 28, 46, 0.8);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      color: var(--text-primary);
+      cursor: pointer;
+      padding: 8px 12px;
+      transition: var(--transition);
+    }
+
+    .mobile-toggle:hover {
+      border-color: var(--primary-emerald);
+      color: var(--primary-emerald);
+    }
+
+    /* Enhanced Floating Glassmorphism Mobile Menu Drawer */
+    .mobile-menu {
+      display: flex;
+      flex-direction: column;
+      position: fixed;
+      top: 76px;
+      left: 0;
+      right: 0;
+      background: rgba(10, 15, 29, 0.96);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--primary-emerald);
+      padding: 20px 24px 28px;
+      z-index: 999;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), 0 0 30px rgba(16, 185, 129, 0.15);
+      transform: translateY(-12px);
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      pointer-events: none;
+    }
+
+    .mobile-menu.active {
+      transform: translateY(0);
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+
+    .mobile-menu a {
+      color: var(--text-primary);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1.05rem;
+      padding: 14px 0;
+      border-bottom: 1px solid rgba(37, 53, 79, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: var(--transition);
+    }
+
+    .mobile-menu a:hover,
+    .mobile-menu a.active {
+      color: var(--primary-emerald);
+      padding-left: 8px;
+    }
+
+    /* Page Header */
+    .policy-header {
+      padding: 60px 0 40px;
+      text-align: center;
+      border-bottom: 1px solid var(--border-color);
+      margin-bottom: 50px;
+    }
+
+    .policy-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 18px;
+      border-radius: var(--radius-full);
+      background: rgba(16, 185, 129, 0.1);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      color: var(--primary-emerald);
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+      white-space: nowrap;
+    }
+
+    .policy-title {
+      font-size: 2.8rem;
+      font-weight: 800;
+      margin-bottom: 16px;
+      letter-spacing: -0.02em;
+    }
+
+    .policy-meta {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+    }
+
+    /* Main Grid with Sticky Sidebar TOC */
+    .doc-layout {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 40px;
+      margin-bottom: 80px;
+      align-items: start;
+    }
+
+    .toc-sidebar {
+      position: sticky;
+      top: 100px;
+      background: var(--card-bg-gradient);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      box-shadow: var(--shadow-card);
+    }
+
+    .toc-title {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--accent-cyan);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 16px;
+      white-space: nowrap;
+    }
+
+    .toc-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .toc-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+      transition: var(--transition);
+      display: block;
+      padding: 6px 10px;
+      border-radius: var(--radius-sm);
+      white-space: nowrap;
+    }
+
+    .toc-links a:hover,
+    .toc-links a.active {
+      color: var(--primary-emerald);
+      background: rgba(16, 185, 129, 0.12);
+    }
+
+    /* Harmonized Summary Card */
+    .summary-card {
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.12) 0%, rgba(19, 28, 46, 0.95) 100%);
+      border: 1px solid rgba(16, 185, 129, 0.35);
+      border-radius: var(--radius-lg);
+      padding: 36px;
+      margin-bottom: 36px;
+      box-shadow: var(--shadow-glow), var(--shadow-card);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .summary-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--primary-emerald), var(--accent-cyan));
+    }
+
+    .summary-card h3 {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--primary-emerald);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .summary-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .summary-item {
+      background: var(--card-bg-gradient);
+      border: 1px solid var(--border-color);
+      padding: 18px 20px;
+      border-radius: var(--radius-md);
+      font-size: 0.92rem;
+      color: var(--text-primary);
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      box-shadow: var(--shadow-card);
+    }
+
+    .summary-item svg {
+      color: var(--primary-emerald);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    /* Harmonized Policy Section Cards */
+    .policy-section {
+      background: var(--card-bg-gradient);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 36px;
+      margin-bottom: 32px;
+      scroll-margin-top: 100px;
+      transition: var(--transition);
+      box-shadow: var(--shadow-card);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .policy-section:hover {
+      border-color: var(--border-hover);
+    }
+
+    .section-num {
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--primary-emerald);
+      font-size: 0.85rem;
+      font-weight: 800;
+      background: rgba(16, 185, 129, 0.1);
+      border: 1px solid rgba(16, 185, 129, 0.25);
+      padding: 3px 10px;
+      border-radius: var(--radius-full);
+      display: inline-block;
+      margin-bottom: 12px;
+      white-space: nowrap;
+    }
+
+    .policy-section h2 {
+      font-size: 1.55rem;
+      font-weight: 800;
+      margin-bottom: 16px;
+      color: var(--text-primary);
+    }
+
+    .policy-section p {
+      color: var(--text-secondary);
+      font-size: 1rem;
+      margin-bottom: 16px;
+      line-height: 1.7;
+    }
+
+    .policy-section p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* Harmonized Sub-Card Permission Box */
+    .permission-box {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-left: 4px solid var(--accent-cyan);
+      padding: 22px 26px;
+      border-radius: var(--radius-md);
+      margin: 20px 0;
+      box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5);
+    }
+
+    .permission-box h4 {
+      font-size: 1.08rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .permission-box h4 svg {
+      color: var(--accent-cyan);
+    }
+
+    .permission-box p {
+      font-size: 0.95rem;
+      margin-bottom: 0;
+    }
+
+    /* Floating Back To Top Button */
+    .back-to-top {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--card-bg-gradient);
+      border: 1px solid var(--primary-emerald);
+      color: var(--primary-emerald);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 90;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6), 0 0 15px rgba(16, 185, 129, 0.2);
+      transition: var(--transition);
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .back-to-top.visible {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .back-to-top:hover {
+      background: var(--primary-emerald);
+      color: #000000;
+      transform: translateY(-4px);
+    }
+
+    /* Footer */
+    footer {
+      background: #060913;
+      border-top: 1px solid var(--border-color);
+      padding: 60px 0 30px;
+      margin-top: auto;
+    }
+
+    .footer-content {
+      display: grid;
+      grid-template-columns: 2fr repeat(3, 1fr);
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+
+    .footer-brand p {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      margin-top: 16px;
+      max-width: 320px;
+    }
+
+    .footer-col h4 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+      color: var(--text-primary);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .footer-col ul {
+      list-style: none;
+    }
+
+    .footer-col li {
+      margin-bottom: 12px;
+    }
+
+    .footer-col a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: var(--transition);
+      white-space: nowrap;
+    }
+
+    .footer-col a:hover {
+      color: var(--primary-emerald);
+    }
+
+    .footer-bottom {
+      padding-top: 30px;
+      border-top: 1px solid rgba(37, 53, 79, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    /* Responsive Breakpoints */
+    @media (max-width: 992px) {
+      .nav-links {
+        display: none !important;
+      }
+
+      .btn-back {
+        display: none !important;
+      }
+
+      .mobile-toggle {
+        display: flex !important;
+      }
+
+      .doc-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .toc-sidebar {
+        display: none;
+      }
+
+      .summary-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-content {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .policy-title {
+        font-size: 2.1rem;
+      }
+
+      .policy-section {
+        padding: 24px;
+      }
+
+      .footer-content {
+        grid-template-columns: 1fr;
+      }
+
+      .brand-badge {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <header>
+    <div class="container">
+      <nav>
+        <a href="index.html" class="brand">
+          <img src="./icon.png" alt="Skanzo Logo">
+          <div class="brand-text">
+            <span class="brand-name">Skanzo</span>
+            <span class="brand-badge">Offline Barcode & Inventory</span>
+          </div>
+        </a>
+
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="privacy.html" class="active">Privacy Policy</a></li>
+          <li><a href="terms.html">Terms of Use</a></li>
+        </ul>
+
+        <a href="index.html" class="btn-back">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <polyline points="15 18 9 12 15 6"></polyline>
+          </svg>
+          Back to Site
+        </a>
+
+        <button class="mobile-toggle" id="menuToggle" aria-label="Toggle Menu" aria-expanded="false">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Floating Glassmorphism Mobile Dropdown Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">
+      <span>Home</span>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+        <polyline points="9 18 15 12 9 6"></polyline>
+      </svg>
+    </a>
+    <a href="privacy.html" class="active">
+      <span>Privacy Policy</span>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+        <polyline points="9 18 15 12 9 6"></polyline>
+      </svg>
+    </a>
+    <a href="terms.html">
+      <span>Terms of Service</span>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+        <polyline points="9 18 15 12 9 6"></polyline>
+      </svg>
+    </a>
+  </div>
+
+  <!-- Page Header -->
+  <div class="container">
+    <div class="policy-header">
+      <div class="policy-badge">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+          <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+        </svg>
+        100% On-Device Privacy Guaranteed
+      </div>
+      <h1 class="policy-title">Privacy Policy</h1>
+      <div class="policy-meta">
+        Last Updated: August 13, 2026 &bull; Skanzo v1.0.0
+      </div>
+    </div>
+  </div>
+
+  <!-- Document Grid -->
+  <main class="container doc-layout">
+
+    <!-- Sticky Table of Contents Sidebar -->
+    <aside class="toc-sidebar">
+      <div class="toc-title">Table of Contents</div>
+      <ul class="toc-links">
+        <li><a href="#summary">Executive Summary</a></li>
+        <li><a href="#philosophy">01. Architecture</a></li>
+        <li><a href="#data-collected">02. Data We Do NOT Collect</a></li>
+        <li><a href="#permissions">03. Device Permissions</a></li>
+        <li><a href="#payments">04. In-App Purchases</a></li>
+        <li><a href="#security">05. Document Hashes</a></li>
+        <li><a href="#children">06. Children's Privacy</a></li>
+        <li><a href="#user-control">07. Data Control</a></li>
+        <li><a href="#contact">08. Contact Us</a></li>
+      </ul>
+    </aside>
+
+    <!-- Document Content -->
+    <div class="doc-content">
+
+      <!-- Executive Summary Card -->
+      <div class="summary-card" id="summary">
+        <h3>🛡️ Privacy Commitments at a Glance</h3>
+        <div class="summary-grid">
+          <div class="summary-item">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            <div><strong>Zero Cloud Transmissions:</strong> 100% offline application without cloud sync dependencies.
+            </div>
+          </div>
+          <div class="summary-item">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            <div><strong>No Personal Data Collection:</strong> No user registration, no email tracking, no analytics
+              SDKs.</div>
+          </div>
+          <div class="summary-item">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            <div><strong>Zero Third-Party Ads:</strong> Free from ad networks, tracking cookies, or commercial
+              telemetry.</div>
+          </div>
+          <div class="summary-item">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            <div><strong>Local Hardware Sandbox:</strong> Your databases, stock counts, and price lists remain strictly
+              on device.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 1 -->
+      <article class="policy-section" id="philosophy">
+        <span class="section-num">Section 01</span>
+        <h2>Privacy by Design & Offline Architecture</h2>
+        <p>Skanzo ("the Application", "we", "us", or "our") was engineered from the ground up to respect
+          commercial confidentiality. Shopkeepers, inventory managers, and logistics operators process sensitive pricing
+          and stock count data every day.</p>
+        <p>Unlike cloud-dependent SaaS platforms, Skanzo does not communicate with external servers during
+          regular operation. Your stock data, unit prices, product reference codes, and financial totals remain 100%
+          stored on your local device hardware.</p>
+      </article>
+
+      <!-- Section 2 -->
+      <article class="policy-section" id="data-collected">
+        <span class="section-num">Section 02</span>
+        <h2>Information We Do NOT Collect</h2>
+        <p>To be completely clear, Skanzo <strong>does NOT collect, transmit, store, sell, or share</strong>
+          any of the following categories of data:</p>
+        <p>&bull; <strong>Personal Identifiers:</strong> Names, email addresses, phone numbers, device serial numbers,
+          IP addresses, or Apple/Google Account IDs.</p>
+        <p>&bull; <strong>Commercial Inventory Data:</strong> Product names, scanned barcode values (EAN, UPC, QR
+          codes), stock counts, unit prices, total stock values, or signature images on PDF reports.</p>
+        <p>&bull; <strong>Location & Device Telemetry:</strong> GPS position, Wi-Fi networks, usage heatmaps, or
+          diagnostic crash reports.</p>
+        <p>&bull; <strong>Biometric Data:</strong> Face ID / Touch ID authentication is managed exclusively by your
+          device operating system.</p>
+      </article>
+
+      <!-- Section 3 -->
+      <article class="policy-section" id="permissions">
+        <span class="section-num">Section 03</span>
+        <h2>Device Permissions Explained</h2>
+        <p>Skanzo requests minimal system permissions solely to deliver core camera scanning and document
+          generation features. Here is how each permission is used:</p>
+
+        <div class="permission-box">
+          <h4>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+              <circle cx="12" cy="13" r="4"></circle>
+            </svg>
+            Camera Permission (NSCameraUsageDescription)
+          </h4>
+          <p><strong>Purpose:</strong> Used exclusively to scan 1D (EAN-13, EAN-8, Code 128, Code 39) and 2D (QR Code)
+            barcodes in real time. Video frames are processed locally in real-time RAM memory by the camera engine and
+            are immediately discarded. No photos or video recordings are saved to storage or transmitted over the
+            internet.</p>
+        </div>
+
+        <div class="permission-box">
+          <h4>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+              <circle cx="8.5" cy="8.5" r="1.5"></circle>
+              <polyline points="21 15 16 10 5 21"></polyline>
+            </svg>
+            Photo Library Access (NSPhotoLibraryUsageDescription)
+          </h4>
+          <p><strong>Purpose:</strong> Optional permission requested only when you choose to upload a custom company
+            logo from your photo library to display on printed/exported PDF inventory reports. The selected image is
+            stored locally in the app's internal sandbox directory and never uploaded.</p>
+        </div>
+      </article>
+
+      <!-- Section 4 -->
+      <article class="policy-section" id="payments">
+        <span class="section-num">Section 04</span>
+        <h2>In-App Purchases & Financial Transactions</h2>
+        <p>Skanzo offers a one-time lifetime Pro upgrade (€29.99 reference tier excluding tax, converted to your regional
+          store currency, with applicable local taxes such as VAT added at checkout) processed securely through Apple App Store (In-App Purchase) or Google Play Store (Google Play
+          Billing).</p>
+        <p>All payment processing, local currency calculation, receipt validation, and lifetime purchase restoration are
+          managed directly by Apple or Google. We do not receive, store, or process your credit card numbers, billing
+          addresses, or bank account details. We only receive an anonymous digital token confirming purchase status.</p>
+      </article>
+
+      <!-- Section 5 -->
+      <article class="policy-section" id="security">
+        <span class="section-num">Section 05</span>
+        <h2>Document Cryptography & Local Storage</h2>
+        <p>All session data, SQLite databases, and user preferences are written into the operating system sandbox
+          dedicated exclusively to Skanzo.</p>
+        <p>When you generate an official PDF inventory report, the Application creates a local SHA-256 cryptographic
+          verification hash and embeds a verification QR code onto the PDF page. This cryptographic verification process
+          runs entirely on your device hardware without contacting any remote server.</p>
+      </article>
+
+      <!-- Section 6 -->
+      <article class="policy-section" id="children">
+        <span class="section-num">Section 06</span>
+        <h2>Children's Privacy</h2>
+        <p>Skanzo is a professional business utility designed for commercial inventory management. It does
+          not collect personal data from anyone, including children under the age of 13 (or under 16 in the European
+          Union). The app complies fully with COPPA (Children's Online Privacy Protection Act) and GDPR guidelines.</p>
+      </article>
+
+      <!-- Section 7 -->
+      <article class="policy-section" id="user-control">
+        <span class="section-num">Section 07</span>
+        <h2>Data Retention & Deletion</h2>
+        <p>You have 100% control over your data at all times. You can delete individual counting sessions, clear product
+          catalogs, or erase all app data at any time from within the app settings.</p>
+        <p>Deleting or uninstalling the Skanzo application from your device permanently erases all local
+          database files, PDF caches, and saved settings. Because we do not hold cloud backups, data deleted from the
+          device cannot be recovered by us.</p>
+      </article>
+
+      <!-- Section 8 -->
+      <article class="policy-section" id="contact">
+        <span class="section-num">Section 08</span>
+        <h2>Contact Us</h2>
+        <p>If you have any questions, concerns, or requests regarding this Privacy Policy or privacy practices, please
+          contact us via email:</p>
+        <p><strong>Email:</strong> <a href="mailto:puludisu.apps@gmail.com"
+            style="color: var(--primary-emerald); font-weight: 600;">puludisu.apps@gmail.com</a></p>
+        <p><strong>Website:</strong> <a href="index.html"
+            style="color: var(--primary-emerald); font-weight: 600;">https://codewithmpia.github.io/mmp-studio/skanzo/</a></p>
+      </article>
+
+    </div>
+  </main>
+
+  <!-- Floating Back To Top Button -->
+  <button class="back-to-top" id="backToTop" aria-label="Back to Top">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+      <polyline points="18 15 12 9 6 15"></polyline>
+    </svg>
+  </button>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <a href="index.html" class="brand">
+            <img src="./icon.png" alt="Skanzo Logo">
+            <div class="brand-text">
+              <span class="brand-name">Skanzo</span>
+              <span class="brand-badge">Barcode & Inventory</span>
+            </div>
+          </a>
+          <p>Skanzo is the 100% offline, privacy-first barcode inventory application for retail stores,
+            warehouses, and stock managers.</p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Navigation</h4>
+          <ul>
+            <li><a href="index.html#features">Features</a></li>
+            <li><a href="index.html#workflow">How It Works</a></li>
+            <li><a href="index.html#pricing">Pricing</a></li>
+            <li><a href="index.html#faq">FAQ</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="privacy.html">Privacy Policy</a></li>
+            <li><a href="terms.html">Terms of Service (EULA)</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Contact & Support</h4>
+          <ul>
+            <li><a href="mailto:puludisu.apps@gmail.com">puludisu.apps@gmail.com</a></li>
+            <li><a href="privacy.html#contact">Privacy Enquiries</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>&copy; 2026 Skanzo. All rights reserved.</div>
+        <div>100% On-Device Data Storage &bull; No Cloud Tracking</div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Intersection Observer for highlighting current TOC link
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = entry.target.getAttribute('id');
+          document.querySelectorAll('.toc-links a').forEach(link => {
+            if (link.getAttribute('href') === `#${id}`) {
+              link.classList.add('active');
+            } else {
+              link.classList.remove('active');
+            }
+          });
+        }
+      });
+    }, { threshold: 0.4 });
+
+    document.querySelectorAll('.policy-section').forEach(section => {
+      observer.observe(section);
+    });
+
+    // Robust Auto-Closing Mobile Menu Logic
+    const menuToggle = document.getElementById('menuToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    function closeMobileMenu() {
+      if (mobileMenu && mobileMenu.classList.contains('active')) {
+        mobileMenu.classList.remove('active');
+        if (menuToggle) menuToggle.setAttribute('aria-expanded', 'false');
+      }
+    }
+
+    if (menuToggle && mobileMenu) {
+      menuToggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isActive = mobileMenu.classList.toggle('active');
+        menuToggle.setAttribute('aria-expanded', isActive ? 'true' : 'false');
+      });
+
+      // Close when clicking ANY link inside mobileMenu
+      mobileMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          closeMobileMenu();
+        });
+      });
+
+      // Close when clicking OUTSIDE the mobileMenu and menuToggle
+      document.addEventListener('click', (e) => {
+        if (!mobileMenu.contains(e.target) && !menuToggle.contains(e.target)) {
+          closeMobileMenu();
+        }
+      });
+
+      // Close on Escape key press
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeMobileMenu();
+      });
+
+      // Close on window resize to desktop
+      window.addEventListener('resize', () => {
+        if (window.innerWidth > 992) closeMobileMenu();
+      });
+    }
+
+    // Scroll to Top Button Visibility & Logic
+    const backToTopBtn = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 400) {
+        backToTopBtn.classList.add('visible');
+      } else {
+        backToTopBtn.classList.remove('visible');
+      }
+    });
+
+    backToTopBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  </script>
+
+</body>
+
+</html>

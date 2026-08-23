@@ -1,0 +1,2291 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Skanzo — Mobile Barcode Scanner & Stock Inventory App</title>
+  <meta name="description"
+    content="Turn your iPhone or Android device into a high-precision professional barcode scanner and stock inventory manager. 100% offline, certified PDF reports, thermal labels, Excel/CSV export.">
+  <meta name="keywords"
+    content="barcode scanner, stock inventory, offline inventory, EAN-13, EAN-8, Code 128, Code 39, QR code scanner, PDF inventory report, thermal barcode labels, Excel export, CSV catalog import, Skanzo">
+
+  <meta property="og:title" content="Skanzo — Barcode Scanner & Stock Inventory">
+  <meta property="og:description"
+    content="Professional 100% offline inventory scanner app. Generate certified PDF reports, print thermal barcode labels, export to Excel & CSV.">
+  <meta property="og:image" content="https://codewithmpia.github.io/mmp-studio/skanzo/icon.png">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://codewithmpia.github.io/mmp-studio/skanzo/">
+
+  <link rel="canonical" href="https://codewithmpia.github.io/mmp-studio/skanzo/">
+  <link rel="icon" type="image/png" href="./icon.png">
+  <link rel="stylesheet" href="./fonts.css">
+
+  <style>
+    :root {
+      --bg-dark: #0A0F1D;
+      --bg-surface: #111827;
+      --card-bg-gradient: linear-gradient(145deg, rgba(19, 28, 46, 0.88) 0%, rgba(15, 23, 42, 0.96) 100%);
+      --card-elevated-gradient: linear-gradient(145deg, rgba(28, 40, 62, 0.92) 0%, rgba(19, 28, 46, 0.96) 100%);
+      --border-color: rgba(37, 53, 79, 0.7);
+      --border-hover: rgba(16, 185, 129, 0.55);
+      --primary-emerald: #10B981;
+      --emerald-dark: #059669;
+      --accent-cyan: #06B6D4;
+      --accent-teal: #14B8A6;
+      --gold-pro: #F59E0B;
+      --text-primary: #F8FAFC;
+      --text-secondary: #94A3B8;
+      --text-muted: #64748B;
+      --radius-sm: 10px;
+      --radius-md: 16px;
+      --radius-lg: 20px;
+      --radius-full: 9999px;
+      --shadow-glow: 0 0 50px rgba(16, 185, 129, 0.15);
+      --shadow-card: 0 12px 36px -8px rgba(0, 0, 0, 0.6);
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg-dark);
+      color: var(--text-primary);
+      line-height: 1.6;
+    }
+
+    body {
+      overflow-x: hidden;
+      background: radial-gradient(circle at 50% 0%, rgba(16, 185, 129, 0.09) 0%, rgba(10, 15, 29, 1) 70%);
+      min-height: 100vh;
+    }
+
+    /* Top Announcement Bar */
+    .announcement-bar {
+      background: linear-gradient(90deg, rgba(16, 185, 129, 0.15), rgba(6, 182, 212, 0.15));
+      border-bottom: 1px solid rgba(16, 185, 129, 0.2);
+      text-align: center;
+      padding: 8px 16px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .announcement-bar span {
+      background: var(--primary-emerald);
+      color: #000;
+      padding: 2px 8px;
+      border-radius: var(--radius-full);
+      font-size: 0.75rem;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    /* Container */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Header & Navigation */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(10, 15, 29, 0.88);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(37, 53, 79, 0.6);
+      transition: var(--transition);
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 76px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      text-decoration: none;
+      color: var(--text-primary);
+    }
+
+    .brand img {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(16, 185, 129, 0.35);
+      transition: var(--transition);
+      flex-shrink: 0;
+    }
+
+    .brand:hover img {
+      transform: scale(1.06) rotate(-2deg);
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .brand-name {
+      font-weight: 800;
+      font-size: 1.25rem;
+      letter-spacing: -0.02em;
+      background: linear-gradient(135deg, #FFFFFF 0%, #CBD5E1 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      white-space: nowrap;
+    }
+
+    .brand-badge {
+      font-size: 0.68rem;
+      font-weight: 700;
+      color: var(--primary-emerald);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      white-space: nowrap;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: var(--transition);
+      white-space: nowrap;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--primary-emerald);
+    }
+
+    .nav-cta,
+    .btn,
+    .store-btn,
+    .tab-btn,
+    .btn-full,
+    .btn-back {
+      white-space: nowrap !important;
+    }
+
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: linear-gradient(135deg, var(--primary-emerald), var(--emerald-dark));
+      color: #FFFFFF !important;
+      padding: 11px 26px;
+      border-radius: var(--radius-full);
+      font-weight: 700 !important;
+      font-size: 0.92rem !important;
+      box-shadow: 0 4px 20px rgba(16, 185, 129, 0.35);
+      transition: var(--transition);
+      border: none;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .nav-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(16, 185, 129, 0.5);
+    }
+
+    /* Mobile Hamburger Button */
+    .mobile-toggle {
+      display: none;
+      background: rgba(19, 28, 46, 0.8);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      color: var(--text-primary);
+      cursor: pointer;
+      padding: 8px 12px;
+      transition: var(--transition);
+    }
+
+    .mobile-toggle:hover {
+      border-color: var(--primary-emerald);
+      color: var(--primary-emerald);
+    }
+
+    /* Enhanced Floating Glassmorphism Mobile Menu Drawer */
+    .mobile-menu {
+      display: flex;
+      flex-direction: column;
+      position: fixed;
+      top: 76px;
+      left: 0;
+      right: 0;
+      background: rgba(10, 15, 29, 0.96);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--primary-emerald);
+      padding: 20px 24px 28px;
+      z-index: 999;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), 0 0 30px rgba(16, 185, 129, 0.15);
+      transform: translateY(-12px);
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      pointer-events: none;
+    }
+
+    .mobile-menu.active {
+      transform: translateY(0);
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+
+    .mobile-menu a {
+      color: var(--text-primary);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1.05rem;
+      padding: 14px 0;
+      border-bottom: 1px solid rgba(37, 53, 79, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: var(--transition);
+    }
+
+    .mobile-menu a:hover,
+    .mobile-menu a.active {
+      color: var(--primary-emerald);
+      padding-left: 8px;
+    }
+
+    .mobile-menu .btn-mobile-cta {
+      margin-top: 14px;
+      background: linear-gradient(135deg, var(--primary-emerald), var(--emerald-dark));
+      color: #FFFFFF !important;
+      font-weight: 800;
+      padding: 14px;
+      border-radius: var(--radius-full);
+      text-align: center;
+      justify-content: center;
+      border-bottom: none;
+      box-shadow: 0 6px 20px rgba(16, 185, 129, 0.35);
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: 80px 0 70px;
+      text-align: center;
+      position: relative;
+    }
+
+    .hero-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 20px;
+      border-radius: var(--radius-full);
+      background: rgba(16, 185, 129, 0.1);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      color: var(--primary-emerald);
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-bottom: 28px;
+      white-space: nowrap;
+    }
+
+    .hero-pill .pulse-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: var(--primary-emerald);
+      box-shadow: 0 0 12px var(--primary-emerald);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+      }
+
+      70% {
+        transform: scale(1);
+        box-shadow: 0 0 0 10px rgba(16, 185, 129, 0);
+      }
+
+      100% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+      }
+    }
+
+    .hero h1 {
+      font-size: 3.6rem;
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -0.03em;
+      margin-bottom: 24px;
+      max-width: 920px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .hero h1 .highlight {
+      background: linear-gradient(135deg, var(--primary-emerald) 0%, var(--accent-cyan) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-subtitle {
+      font-size: 1.2rem;
+      color: var(--text-secondary);
+      max-width: 740px;
+      margin: 0 auto 40px;
+      line-height: 1.7;
+    }
+
+    .store-buttons {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 60px;
+    }
+
+    .store-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      background: var(--card-bg-gradient);
+      border: 1px solid var(--border-color);
+      color: var(--text-primary);
+      padding: 14px 28px;
+      border-radius: var(--radius-md);
+      text-decoration: none;
+      transition: var(--transition);
+      box-shadow: var(--shadow-card);
+      white-space: nowrap;
+    }
+
+    .store-btn:hover {
+      border-color: var(--primary-emerald);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 30px rgba(16, 185, 129, 0.2);
+    }
+
+    .store-btn svg {
+      width: 28px;
+      height: 28px;
+      flex-shrink: 0;
+    }
+
+    .store-btn-text {
+      display: flex;
+      flex-direction: column;
+      text-align: left;
+    }
+
+    .store-btn-small {
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .store-btn-large {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      white-space: nowrap;
+    }
+
+    /* Refined Realistic Scanner Graphic Card */
+    .hero-mockup-container {
+      max-width: 1000px;
+      margin: 0 auto;
+      background: var(--card-bg-gradient);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 40px;
+      position: relative;
+      box-shadow: var(--shadow-glow), var(--shadow-card);
+      display: grid;
+      grid-template-columns: 1.1fr 1.2fr;
+      gap: 40px;
+      align-items: center;
+      text-align: left;
+      overflow: hidden;
+    }
+
+    .hero-mockup-container::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--primary-emerald), var(--accent-cyan));
+    }
+
+    .scanner-view-card {
+      background: #060913;
+      border: 1.5px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.9);
+    }
+
+    .camera-status-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--text-secondary);
+    }
+
+    .camera-live-badge {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--primary-emerald);
+      font-weight: 700;
+    }
+
+    .camera-live-badge span {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--primary-emerald);
+      box-shadow: 0 0 8px var(--primary-emerald);
+    }
+
+    .laser-line {
+      position: absolute;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, #10B981 25%, #06B6D4 75%, transparent);
+      box-shadow: 0 0 14px #10B981, 0 0 28px #06B6D4;
+      animation: scanBeamInFrame 2.2s ease-in-out infinite alternate;
+      z-index: 5;
+      pointer-events: none;
+    }
+
+    @keyframes scanBeamInFrame {
+      0% {
+        top: 4px;
+      }
+
+      100% {
+        top: calc(100% - 6px);
+      }
+    }
+
+    .scanner-frame {
+      border: 2px dashed rgba(16, 185, 129, 0.4);
+      border-radius: var(--radius-sm);
+      padding: 24px 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 190px;
+      background: rgba(16, 185, 129, 0.03);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .reticle-corner {
+      position: absolute;
+      width: 14px;
+      height: 14px;
+      border: 3px solid var(--primary-emerald);
+    }
+
+    .reticle-tl {
+      top: -2px;
+      left: -2px;
+      border-right: none;
+      border-bottom: none;
+      border-top-left-radius: 6px;
+    }
+
+    .reticle-tr {
+      top: -2px;
+      right: -2px;
+      border-left: none;
+      border-bottom: none;
+      border-top-right-radius: 6px;
+    }
+
+    .reticle-bl {
+      bottom: -2px;
+      left: -2px;
+      border-right: none;
+      border-top: none;
+      border-bottom-left-radius: 6px;
+    }
+
+    .reticle-br {
+      bottom: -2px;
+      right: -2px;
+      border-left: none;
+      border-top: none;
+      border-bottom-right-radius: 6px;
+    }
+
+    .barcode-svg-bars {
+      width: 180px;
+      height: 70px;
+      margin-bottom: 12px;
+    }
+
+    .barcode-val {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.9rem;
+      color: var(--primary-emerald);
+      font-weight: 700;
+      letter-spacing: 0.1em;
+    }
+
+    .scanned-item-banner {
+      margin-top: 16px;
+      background: rgba(19, 28, 46, 0.95);
+      border: 1px solid var(--primary-emerald);
+      border-radius: var(--radius-sm);
+      padding: 12px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+    }
+
+    .scanned-item-info {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .scanned-item-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid var(--primary-emerald);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary-emerald);
+      flex-shrink: 0;
+    }
+
+    .scanned-item-title {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      line-height: 1.2;
+    }
+
+    .scanned-item-price {
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .scanned-item-qty {
+      background: var(--primary-emerald);
+      color: #000;
+      font-weight: 800;
+      font-size: 0.8rem;
+      padding: 4px 10px;
+      border-radius: var(--radius-full);
+      font-family: 'JetBrains Mono', monospace;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .mockup-details h3 {
+      font-size: 1.8rem;
+      font-weight: 800;
+      margin-bottom: 14px;
+      line-height: 1.25;
+    }
+
+    .mockup-details p {
+      color: var(--text-secondary);
+      font-size: 1.05rem;
+      margin-bottom: 24px;
+      line-height: 1.65;
+    }
+
+    .feature-check-list {
+      list-style: none;
+    }
+
+    .feature-check-list li {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--text-primary);
+      font-weight: 600;
+      font-size: 0.95rem;
+      margin-bottom: 14px;
+    }
+
+    .feature-check-list svg {
+      color: var(--primary-emerald);
+      flex-shrink: 0;
+    }
+
+    /* Harmonized Stat Cards */
+    .stats-bar {
+      margin: 70px 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 24px;
+    }
+
+    .stat-card {
+      background: var(--card-bg-gradient);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 28px 24px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      transition: var(--transition);
+      box-shadow: var(--shadow-card);
+    }
+
+    .stat-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 20%;
+      right: 20%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--primary-emerald), transparent);
+    }
+
+    .stat-card:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-4px);
+      box-shadow: 0 16px 32px rgba(0, 0, 0, 0.7), 0 0 20px rgba(16, 185, 129, 0.1);
+    }
+
+    .stat-number {
+      font-size: 2.4rem;
+      font-weight: 800;
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--primary-emerald);
+      margin-bottom: 6px;
+    }
+
+    .stat-label {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    /* Section Header */
+    .section-header {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .section-subtitle {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--accent-cyan);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    .section-title {
+      font-size: 2.5rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+    }
+
+    .section-desc {
+      color: var(--text-secondary);
+      font-size: 1.1rem;
+      max-width: 660px;
+      margin: 0 auto;
+    }
+
+    /* Horizontal Touch Scroll Tabs for Mobile */
+    .tab-buttons {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 40px;
+    }
+
+    .tab-btn {
+      background: var(--card-bg-gradient);
+      border: 1px solid var(--border-color);
+      color: var(--text-secondary);
+      padding: 12px 24px;
+      border-radius: var(--radius-full);
+      font-weight: 700;
+      font-size: 0.92rem;
+      cursor: pointer;
+      transition: var(--transition);
+      white-space: nowrap !important;
+      flex-shrink: 0;
+    }
+
+    .tab-btn:hover,
+    .tab-btn.active {
+      border-color: var(--primary-emerald);
+      color: var(--primary-emerald);
+      box-shadow: 0 4px 20px rgba(16, 185, 129, 0.2);
+    }
+
+    .tab-content {
+      display: none;
+      background: var(--card-bg-gradient);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 40px;
+      box-shadow: var(--shadow-card);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .tab-content::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--primary-emerald), var(--accent-cyan));
+    }
+
+    .tab-content.active {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: center;
+      animation: fadeIn 0.4s ease;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .tab-text h3 {
+      font-size: 1.75rem;
+      font-weight: 800;
+      margin-bottom: 14px;
+    }
+
+    .tab-text p {
+      color: var(--text-secondary);
+      font-size: 1.05rem;
+      line-height: 1.7;
+      margin-bottom: 24px;
+    }
+
+    .tab-preview-box {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 28px;
+      font-family: 'JetBrains Mono', monospace;
+      box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.6);
+    }
+
+    /* Harmonized Feature Cards Grid */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 28px;
+      margin-bottom: 100px;
+    }
+
+    .feature-card {
+      background: var(--card-bg-gradient);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 36px 32px;
+      transition: var(--transition);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--shadow-card);
+    }
+
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: transparent;
+      transition: var(--transition);
+    }
+
+    .feature-card:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-6px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7), 0 0 25px rgba(16, 185, 129, 0.12);
+    }
+
+    .feature-card:hover::before {
+      background: linear-gradient(90deg, var(--primary-emerald), var(--accent-cyan));
+    }
+
+    .feature-icon-badge {
+      width: 54px;
+      height: 54px;
+      border-radius: var(--radius-md);
+      background: rgba(16, 185, 129, 0.1);
+      border: 1px solid rgba(16, 185, 129, 0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary-emerald);
+      margin-bottom: 24px;
+      box-shadow: 0 4px 16px rgba(16, 185, 129, 0.15);
+    }
+
+    .feature-card:nth-child(2) .feature-icon-badge {
+      background: rgba(6, 182, 212, 0.1);
+      border-color: rgba(6, 182, 212, 0.25);
+      color: var(--accent-cyan);
+      box-shadow: 0 4px 16px rgba(6, 182, 212, 0.15);
+    }
+
+    .feature-card:nth-child(3) .feature-icon-badge {
+      background: rgba(245, 158, 11, 0.1);
+      border-color: rgba(245, 158, 11, 0.25);
+      color: var(--gold-pro);
+      box-shadow: 0 4px 16px rgba(245, 158, 11, 0.15);
+    }
+
+    .feature-title {
+      font-size: 1.35rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .feature-text {
+      color: var(--text-secondary);
+      font-size: 0.98rem;
+      line-height: 1.65;
+    }
+
+    /* Harmonized Workflow Step Cards */
+    .workflow-section {
+      margin-bottom: 100px;
+    }
+
+    .workflow-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 28px;
+    }
+
+    .step-card {
+      background: var(--card-bg-gradient);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 36px 30px;
+      position: relative;
+      box-shadow: var(--shadow-card);
+      transition: var(--transition);
+    }
+
+    .step-card:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-4px);
+    }
+
+    .step-badge {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85rem;
+      font-weight: 800;
+      color: var(--primary-emerald);
+      background: rgba(16, 185, 129, 0.1);
+      border: 1px solid rgba(16, 185, 129, 0.25);
+      padding: 4px 12px;
+      border-radius: var(--radius-full);
+      display: inline-block;
+      margin-bottom: 20px;
+      white-space: nowrap;
+    }
+
+    .step-title {
+      font-size: 1.3rem;
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+
+    .step-desc {
+      color: var(--text-secondary);
+      font-size: 0.98rem;
+      line-height: 1.65;
+    }
+
+    /* Privacy Highlight Callout Card */
+    .privacy-banner {
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.12) 0%, rgba(19, 28, 46, 0.95) 100%);
+      border: 1px solid rgba(16, 185, 129, 0.35);
+      border-radius: var(--radius-lg);
+      padding: 48px;
+      margin-bottom: 100px;
+      display: flex;
+      align-items: center;
+      gap: 36px;
+      box-shadow: var(--shadow-glow), var(--shadow-card);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .privacy-banner::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: var(--primary-emerald);
+    }
+
+    .privacy-banner-icon {
+      flex-shrink: 0;
+      background: var(--card-bg-gradient);
+      width: 84px;
+      height: 84px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1.5px solid var(--border-color);
+      box-shadow: 0 0 30px rgba(16, 185, 129, 0.3);
+      color: var(--primary-emerald);
+    }
+
+    .privacy-banner-content h3 {
+      font-size: 1.8rem;
+      font-weight: 800;
+      margin-bottom: 10px;
+    }
+
+    .privacy-banner-content p {
+      color: var(--text-secondary);
+      font-size: 1.05rem;
+      margin-bottom: 18px;
+      line-height: 1.65;
+    }
+
+    .privacy-link {
+      color: var(--primary-emerald);
+      text-decoration: none;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: var(--transition);
+      white-space: nowrap !important;
+    }
+
+    .privacy-link:hover {
+      gap: 12px;
+      color: #FFFFFF;
+    }
+
+    /* Harmonized Pricing Section */
+    .pricing-section {
+      margin-bottom: 100px;
+    }
+
+    .pricing-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 32px;
+      max-width: 940px;
+      margin: 0 auto;
+    }
+
+    .pricing-card {
+      background: var(--card-bg-gradient);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 44px 36px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      box-shadow: var(--shadow-card);
+      transition: var(--transition);
+    }
+
+    .pricing-card:hover {
+      transform: translateY(-4px);
+    }
+
+    .pricing-card.featured {
+      border-color: var(--gold-pro);
+      background: linear-gradient(180deg, rgba(245, 158, 11, 0.08) 0%, rgba(19, 28, 46, 0.95) 100%);
+      box-shadow: 0 0 40px rgba(245, 158, 11, 0.2), var(--shadow-card);
+    }
+
+    .featured-badge {
+      position: absolute;
+      top: -14px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: linear-gradient(135deg, var(--gold-pro), #D97706);
+      color: #000;
+      font-size: 0.75rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 4px 18px;
+      border-radius: var(--radius-full);
+      box-shadow: 0 4px 12px rgba(245, 158, 11, 0.4);
+      white-space: nowrap;
+    }
+
+    .plan-name {
+      font-size: 1.45rem;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .plan-price {
+      font-size: 2.9rem;
+      font-weight: 800;
+      font-family: 'JetBrains Mono', monospace;
+      margin-bottom: 16px;
+    }
+
+    .plan-price span {
+      font-size: 1rem;
+      color: var(--text-secondary);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 500;
+    }
+
+    .plan-desc {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      margin-bottom: 28px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .plan-features {
+      list-style: none;
+      margin-bottom: 36px;
+      flex-grow: 1;
+    }
+
+    .plan-features li {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      margin-bottom: 16px;
+    }
+
+    .plan-features li svg {
+      color: var(--primary-emerald);
+      flex-shrink: 0;
+    }
+
+    .plan-features li.disabled {
+      color: var(--text-muted);
+      text-decoration: line-through;
+    }
+
+    .plan-features li.disabled svg {
+      color: var(--text-muted);
+    }
+
+    .btn-full {
+      width: 100%;
+      text-align: center;
+      justify-content: center;
+      margin-top: auto;
+      white-space: nowrap !important;
+    }
+
+    /* Harmonized FAQ Accordion Cards */
+    .faq-section {
+      margin-bottom: 100px;
+    }
+
+    .faq-grid {
+      max-width: 860px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .faq-item {
+      background: var(--card-bg-gradient);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      transition: var(--transition);
+      box-shadow: var(--shadow-card);
+    }
+
+    .faq-item.open {
+      border-color: var(--primary-emerald);
+      border-left: 4px solid var(--primary-emerald);
+    }
+
+    .faq-question {
+      padding: 24px 28px;
+      font-weight: 700;
+      font-size: 1.1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      user-select: none;
+    }
+
+    .faq-question svg {
+      transition: transform 0.3s ease;
+      color: var(--primary-emerald);
+      flex-shrink: 0;
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1), padding 0.35s ease;
+      color: var(--text-secondary);
+      font-size: 0.98rem;
+      line-height: 1.7;
+      padding: 0 28px;
+    }
+
+    .faq-item.open .faq-question svg {
+      transform: rotate(180deg);
+    }
+
+    .faq-item.open .faq-answer {
+      max-height: 300px;
+      padding: 0 28px 24px 28px;
+    }
+
+    /* Harmonized CTA Banner */
+    .cta-banner {
+      background: linear-gradient(135deg, rgba(19, 28, 46, 0.95) 0%, #0F172A 100%);
+      border: 1px solid var(--primary-emerald);
+      border-radius: var(--radius-lg);
+      padding: 60px 40px;
+      text-align: center;
+      margin-bottom: 100px;
+      box-shadow: var(--shadow-glow), var(--shadow-card);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-banner::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--primary-emerald), var(--accent-cyan));
+    }
+
+    .cta-banner h2 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      margin-bottom: 16px;
+    }
+
+    .cta-banner p {
+      color: var(--text-secondary);
+      font-size: 1.1rem;
+      max-width: 620px;
+      margin: 0 auto 32px;
+    }
+
+    /* Floating Back To Top Button */
+    .back-to-top {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--card-bg-gradient);
+      border: 1px solid var(--primary-emerald);
+      color: var(--primary-emerald);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 90;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6), 0 0 15px rgba(16, 185, 129, 0.2);
+      transition: var(--transition);
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .back-to-top.visible {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .back-to-top:hover {
+      background: var(--primary-emerald);
+      color: #000000;
+      transform: translateY(-4px);
+    }
+
+    /* Footer */
+    footer {
+      background: #060913;
+      border-top: 1px solid var(--border-color);
+      padding: 60px 0 30px;
+    }
+
+    .footer-content {
+      display: grid;
+      grid-template-columns: 2fr repeat(3, 1fr);
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+
+    .footer-brand p {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      margin-top: 16px;
+      max-width: 320px;
+    }
+
+    .footer-col h4 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+      color: var(--text-primary);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .footer-col ul {
+      list-style: none;
+    }
+
+    .footer-col li {
+      margin-bottom: 12px;
+    }
+
+    .footer-col a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: var(--transition);
+      white-space: nowrap;
+    }
+
+    .footer-col a:hover {
+      color: var(--primary-emerald);
+    }
+
+    .footer-bottom {
+      padding-top: 30px;
+      border-top: 1px solid rgba(37, 53, 79, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    /* Responsive Breakpoints */
+    @media (max-width: 992px) {
+      .nav-links {
+        display: none !important;
+      }
+
+      .mobile-toggle {
+        display: flex !important;
+      }
+
+      .hero h1 {
+        font-size: 2.7rem;
+      }
+
+      .hero-mockup-container {
+        grid-template-columns: 1fr;
+      }
+
+      .tab-content.active {
+        grid-template-columns: 1fr;
+      }
+
+      .privacy-banner {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .footer-content {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .tab-buttons {
+        justify-content: flex-start;
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        padding-bottom: 8px;
+        -webkit-overflow-scrolling: touch;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .hero h1 {
+        font-size: 2.1rem;
+      }
+
+      .hero-subtitle {
+        font-size: 1.05rem;
+      }
+
+      .features-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-content {
+        grid-template-columns: 1fr;
+      }
+
+      .brand-badge {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Top Announcement Bar -->
+  <div class="announcement-bar">
+    <span>NEW</span> Skanzo 1.0 is now live — 100% Offline Barcode Scanner & Certified Inventory Management
+  </div>
+
+  <!-- Navigation -->
+  <header id="navbar">
+    <div class="container">
+      <nav>
+        <a href="index.html" class="brand">
+          <img src="./icon.png" alt="Skanzo Logo">
+          <div class="brand-text">
+            <span class="brand-name">Skanzo</span>
+            <span class="brand-badge">Offline Barcode & Inventory</span>
+          </div>
+        </a>
+
+        <ul class="nav-links">
+          <li><a href="#features">Features</a></li>
+          <li><a href="#workflow">How It Works</a></li>
+          <li><a href="#pricing">Pricing</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="privacy.html">Privacy</a></li>
+          <li><a href="terms.html">Terms</a></li>
+          <li><a href="#download" class="nav-cta">Get App</a></li>
+        </ul>
+
+        <button class="mobile-toggle" id="menuToggle" aria-label="Toggle Menu" aria-expanded="false">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Floating Glassmorphism Mobile Dropdown Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#features">
+      <span>Features</span>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+        <polyline points="9 18 15 12 9 6"></polyline>
+      </svg>
+    </a>
+    <a href="#workflow">
+      <span>How It Works</span>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+        <polyline points="9 18 15 12 9 6"></polyline>
+      </svg>
+    </a>
+    <a href="#pricing">
+      <span>Pricing</span>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+        <polyline points="9 18 15 12 9 6"></polyline>
+      </svg>
+    </a>
+    <a href="#faq">
+      <span>FAQ</span>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+        <polyline points="9 18 15 12 9 6"></polyline>
+      </svg>
+    </a>
+    <a href="privacy.html">
+      <span>Privacy Policy</span>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+        <polyline points="9 18 15 12 9 6"></polyline>
+      </svg>
+    </a>
+    <a href="terms.html">
+      <span>Terms of Service</span>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+        <polyline points="9 18 15 12 9 6"></polyline>
+      </svg>
+    </a>
+    <a href="#download" class="btn-mobile-cta">Download Skanzo</a>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-pill">
+        <div class="pulse-dot"></div> 100% Offline & Private Barcode Utility
+      </div>
+      <h1>
+        High-Precision Mobile Inventory & <span class="highlight">Barcode Scanner</span>
+      </h1>
+      <p class="hero-subtitle">
+        Turn your iOS or Android phone into a professional handheld scanner. Audit stock in seconds, generate
+        cryptographically signed PDF reports, print thermal labels, and export Excel files — with zero cloud lock-in.
+      </p>
+
+      <!-- App Store Badges -->
+      <div class="store-buttons" id="download">
+        <a href="#" class="store-btn">
+          <svg viewBox="0 0 384 512" fill="currentColor">
+            <path
+              d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-92.1zm-57.8-164.6c17.7-21.2 29.5-50.6 26.2-80.1-25.5 1-56.7 17.1-75 38.3-16.1 18.8-30.4 49-26.7 77.8 28.5 2.2 57.7-14.8 75.5-36z" />
+          </svg>
+          <div class="store-btn-text">
+            <span class="store-btn-small">Download on the</span>
+            <span class="store-btn-large">App Store</span>
+          </div>
+        </a>
+
+        <a href="#" class="store-btn">
+          <svg viewBox="0 0 512 512" fill="currentColor">
+            <path
+              d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l280.8-161.2-60.1-60.1L104.6 499z" />
+          </svg>
+          <div class="store-btn-text">
+            <span class="store-btn-small">GET IT ON</span>
+            <span class="store-btn-large">Google Play</span>
+          </div>
+        </a>
+      </div>
+
+      <!-- Refined Animated Hero Scanner Showcase Card -->
+      <div class="hero-mockup-container">
+        <div class="scanner-view-card">
+          <!-- Camera Status Top Bar -->
+          <div class="camera-status-bar">
+            <div class="camera-live-badge"><span></span> LIVE SCANNER</div>
+            <div>FPS: 60 | AUTO</div>
+          </div>
+
+          <div class="scanner-frame">
+            <div class="laser-line"></div>
+            <div class="reticle-corner reticle-tl"></div>
+            <div class="reticle-corner reticle-tr"></div>
+            <div class="reticle-corner reticle-bl"></div>
+            <div class="reticle-corner reticle-br"></div>
+
+            <svg class="barcode-svg-bars" viewBox="0 0 200 80" fill="#FFFFFF">
+              <rect x="10" y="0" width="6" height="80" />
+              <rect x="22" y="0" width="3" height="80" />
+              <rect x="30" y="0" width="10" height="80" />
+              <rect x="45" y="0" width="4" height="80" />
+              <rect x="54" y="0" width="8" height="80" />
+              <rect x="68" y="0" width="4" height="80" />
+              <rect x="76" y="0" width="12" height="80" />
+              <rect x="94" y="0" width="4" height="80" />
+              <rect x="104" y="0" width="8" height="80" />
+              <rect x="118" y="0" width="4" height="80" />
+              <rect x="126" y="0" width="12" height="80" />
+              <rect x="144" y="0" width="4" height="80" />
+              <rect x="154" y="0" width="8" height="80" />
+              <rect x="168" y="0" width="10" height="80" />
+              <rect x="184" y="0" width="6" height="80" />
+            </svg>
+            <div class="barcode-val">EAN-13: 3560070891242</div>
+          </div>
+
+          <!-- Scanned Item Result Banner -->
+          <div class="scanned-item-banner">
+            <div class="scanned-item-info">
+              <div class="scanned-item-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <path
+                    d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z">
+                  </path>
+                </svg>
+              </div>
+              <div>
+                <div class="scanned-item-title">Organic Coffee Beans 500g</div>
+                <div class="scanned-item-price">$12.99 / unit</div>
+              </div>
+            </div>
+            <div class="scanned-item-qty">+1 (Qty: 24)</div>
+          </div>
+        </div>
+
+        <div class="mockup-details">
+          <h3>Built for Shopkeepers, Retailers & Warehouses</h3>
+          <p>Skanzo removes manual counting errors. Continuous camera scanning instantly identifies barcodes,
+            retrieves product names from your catalog CSV, and updates totals in real-time.</p>
+
+          <ul class="feature-check-list">
+            <li>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+              Supports 1D (EAN-13, EAN-8, Code 128, Code 39) & 2D (QR Codes)
+            </li>
+            <li>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+              100% Offline local SQLite database
+            </li>
+            <li>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+              Official signed A4 PDF reports & Excel export
+            </li>
+            <li>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+              Bluetooth & AirPrint thermal label printing
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Harmonized Stats Bar -->
+  <div class="container">
+    <div class="stats-bar">
+      <div class="stat-card">
+        <div class="stat-number">100%</div>
+        <div class="stat-label">Offline & Private Data</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">0ms</div>
+        <div class="stat-label">Cloud Sync Latency</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">10</div>
+        <div class="stat-label">Supported Languages</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">1-Tap</div>
+        <div class="stat-label">PDF & Excel Export</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Interactive Tabbed Deep Dive Section -->
+  <section class="container" style="margin-bottom: 100px;">
+    <div class="section-header">
+      <span class="section-subtitle">Interactive Feature Demo</span>
+      <h2 class="section-title">Explore Core Capabilities</h2>
+      <p class="section-desc">Click on any module below to see how Skanzo powers your inventory workflow.</p>
+    </div>
+
+    <div class="tab-buttons">
+      <button class="tab-btn active" onclick="switchTab(0)">⚡ Camera Scanner</button>
+      <button class="tab-btn" onclick="switchTab(1)">📑 Certified PDF Reports</button>
+      <button class="tab-btn" onclick="switchTab(2)">📊 Multi-Session Consolidation</button>
+      <button class="tab-btn" onclick="switchTab(3)">🏷️ Thermal Label Printing</button>
+    </div>
+
+    <!-- Tab 0 -->
+    <div class="tab-content active" id="tab-0">
+      <div class="tab-text">
+        <h3>Ultra-Fast Continuous Camera Scanning</h3>
+        <p>Turn your phone's camera into an industrial barcode douchette. High-speed continuous detection scans item
+          after item without needing to press buttons repeatedly. Audio BEEP and haptic vibration feedback confirm each
+          scan instantly.</p>
+        <ul class="feature-check-list">
+          <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg> EAN-13, EAN-8, Code 128, Code 39, QR Codes</li>
+          <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg> Flashlight toggle for dim warehouse shelves</li>
+          <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg> Automatic product lookup from CSV catalog</li>
+        </ul>
+      </div>
+      <div class="tab-preview-box">
+        <div style="color: var(--primary-emerald); margin-bottom: 10px;">[SCANNER ACTIVE — CONTINUOUS MODE]</div>
+        <div style="color: var(--text-secondary); line-height: 1.8;">
+          > Camera ready...<br>
+          > Barcode detected: 7613035799123<br>
+          > Matched: "Mineral Water 1.5L"<br>
+          > Buy: $0.80 | Sell: $1.20 | Qty: +1 (Total: 48)<br>
+          > [AUDIO BEEP & VIBRATION FEEDBACK]
+        </div>
+      </div>
+    </div>
+
+    <!-- Tab 1 -->
+    <div class="tab-content" id="tab-1">
+      <div class="tab-text">
+        <h3>Official Certified PDF Audit Documents</h3>
+        <p>Generate formal A4 inventory reports ready for accounting, insurance, or partner validation. Reports include
+          financial valuations (purchase total, retail total, profit margin), itemized line tables, signature blocks,
+          custom company logos, and SHA-256 verification QR codes.</p>
+        <ul class="feature-check-list">
+          <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg> Cryptographic anti-tampering SHA-256 verification QR</li>
+          <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg> Visa & signature blocks for auditor and manager</li>
+          <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg> Custom company logo & Instant AirPrint support</li>
+        </ul>
+      </div>
+      <div class="tab-preview-box">
+        <div style="color: var(--accent-cyan); margin-bottom: 10px;">[PDF ENGINE — OFFICIAL AUDIT REPORT]</div>
+        <div style="color: var(--text-secondary); line-height: 1.8;">
+          Document ID: SCAN-20260813-0941<br>
+          Total Scanned Volume: 1,420 Items<br>
+          Total Stock Valuation: $14,890.50 (Margin: 32.4%)<br>
+          Security Footprint: e3b0c44298fc1c149afbf4...<br>
+          [COMPANY LOGO, SIGNATURE & QR SEAL EMBEDDED]
+        </div>
+      </div>
+    </div>
+
+    <!-- Tab 2 -->
+    <div class="tab-content" id="tab-2">
+      <div class="tab-text">
+        <h3>Consolidated Multi-Session Audits (Pro)</h3>
+        <p>Managing multiple inventory locations? Perform separate counting sessions for your Backroom Reserve,
+          Storefront, and Main Warehouse — then combine them into a single master PDF audit report with consolidated
+          financial totals.</p>
+        <ul class="feature-check-list">
+          <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg> Merge Reserve + Retail Floor sessions</li>
+          <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg> Per-session break-down tables</li>
+          <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg> Global stock valuation summary</li>
+        </ul>
+      </div>
+      <div class="tab-preview-box">
+        <div style="color: var(--gold-pro); margin-bottom: 10px;">[CONSOLIDATION MASTER REPORT]</div>
+        <div style="color: var(--text-secondary); line-height: 1.8;">
+          + Session 1: Backroom Reserve (540 items)<br>
+          + Session 2: Main Storefront (880 items)<br>
+          -------------------------------------<br>
+          CONSOLIDATED TOTAL: 1,420 Items<br>
+          [MASTER EXCEL & PDF READY]
+        </div>
+      </div>
+    </div>
+
+    <!-- Tab 3 -->
+    <div class="tab-content" id="tab-3">
+      <div class="tab-text">
+        <h3>Thermal & A4 Sheet Label Generator</h3>
+        <p>Print barcode shelf tags directly from your phone. Skanzo supports individual 100x62mm thermal
+          stickers via Bluetooth printers or complete grid label sheets (21 labels per page) on A4 paper.</p>
+        <ul class="feature-check-list">
+          <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg> 100x62mm thermal sticker format</li>
+          <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg> Full A4 grid sheet label printing</li>
+          <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg> Custom product name, price tag & random EAN generator</li>
+        </ul>
+      </div>
+      <div class="tab-preview-box">
+        <div style="color: var(--primary-emerald); margin-bottom: 10px;">[LABEL GENERATOR PRINT SPOOL]</div>
+        <div style="color: var(--text-secondary); line-height: 1.8;">
+          Label Format: 100mm x 62mm Thermal<br>
+          Barcode: EAN-13 | Code: 3560070891242<br>
+          Product: Organic Coffee 500g<br>
+          Price Tag: $12.99<br>
+          [PRINT SENT TO BLUETOOTH / AIRPRINT PRINTER]
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Harmonized Features Grid Section -->
+  <section class="container" id="features" style="margin-bottom: 100px;">
+    <div class="section-header">
+      <span class="section-subtitle">Complete Feature Set</span>
+      <h2 class="section-title">Everything You Need for Accurate Audits</h2>
+      <p class="section-desc">Designed to replace expensive dedicated hardware scanners with your smartphone.</p>
+    </div>
+
+    <div class="features-grid">
+      <!-- Feature 1 -->
+      <div class="feature-card">
+        <div class="feature-icon-badge">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 7V5a2 2 0 0 1 2-2h2"></path>
+            <path d="M17 3h2a2 2 0 0 1 2 2v2"></path>
+            <path d="M21 17v2a2 2 0 0 1-2 2h-2"></path>
+            <path d="M7 21H5a2 2 0 0 1-2-2v-2"></path>
+            <rect x="7" y="7" width="10" height="10" rx="1"></rect>
+          </svg>
+        </div>
+        <h3 class="feature-title">Ultra-Fast Camera Scanner</h3>
+        <p class="feature-text">High-speed continuous scan mode supports all standard 1D (EAN-13, EAN-8, Code 128, Code
+          39) and 2D (QR Code) formats with instant camera recognition, audio beeps, and vibration feedback.</p>
+      </div>
+
+      <!-- Feature 2 -->
+      <div class="feature-card">
+        <div class="feature-icon-badge">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+          </svg>
+        </div>
+        <h3 class="feature-title">100% Offline SQLite Storage</h3>
+        <p class="feature-text">No user account required and zero network calls. All your stock databases, unit prices,
+          and financial inventory totals remain strictly on your local device hardware.</p>
+      </div>
+
+      <!-- Feature 3 -->
+      <div class="feature-card">
+        <div class="feature-icon-badge">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+            <polyline points="14 2 14 8 20 8"></polyline>
+            <line x1="16" y1="13" x2="8" y2="13"></line>
+            <line x1="16" y1="17" x2="8" y2="17"></line>
+          </svg>
+        </div>
+        <h3 class="feature-title">Certified PDF Reports</h3>
+        <p class="feature-text">Generate official A4 inventory documents featuring financial valuations, visa/signature
+          blocks, company branding logo, and SHA-256 cryptographic verification QR codes.</p>
+      </div>
+
+      <!-- Feature 4 -->
+      <div class="feature-card">
+        <div class="feature-icon-badge">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="20" x2="18" y2="10"></line>
+            <line x1="12" y1="20" x2="12" y2="4"></line>
+            <line x1="6" y1="20" x2="6" y2="14"></line>
+          </svg>
+        </div>
+        <h3 class="feature-title">Multi-Session Consolidation</h3>
+        <p class="feature-text">Combine counts from multiple zones (e.g. Backroom Reserve + Retail Storefront +
+          Warehouse) into one master consolidated report with full breakdown.</p>
+      </div>
+
+      <!-- Feature 5 -->
+      <div class="feature-card">
+        <div class="feature-icon-badge">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+            <polyline points="17 8 12 3 7 8"></polyline>
+            <line x1="12" y1="3" x2="12" y2="15"></line>
+          </svg>
+        </div>
+        <h3 class="feature-title">Excel & CSV Catalog Import/Export</h3>
+        <p class="feature-text">Import your product catalog CSV for automatic name & price autocompletion during scans.
+          Export your inventory sessions to Excel (.xlsx) or CSV format anytime.</p>
+      </div>
+
+      <!-- Feature 6 -->
+      <div class="feature-card">
+        <div class="feature-icon-badge">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="6 9 6 2 18 2 18 9"></polyline>
+            <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+            <rect x="6" y="14" width="12" height="8"></rect>
+          </svg>
+        </div>
+        <h3 class="feature-title">Thermal Label Generator</h3>
+        <p class="feature-text">Create and print individual 100x62mm thermal barcode stickers or full A4 label sheets
+          directly from your phone to customize shelf tags.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Harmonized Workflow Step Section -->
+  <section class="container workflow-section" id="workflow">
+    <div class="section-header">
+      <span class="section-subtitle">Streamlined Workflow</span>
+      <h2 class="section-title">How Skanzo Works</h2>
+      <p class="section-desc">Get your complete stock inventory audited in 3 easy steps.</p>
+    </div>
+
+    <div class="workflow-grid">
+      <div class="step-card">
+        <span class="step-badge">STEP 01</span>
+        <h3 class="step-title">Scan or Import</h3>
+        <p class="step-desc">Start a new counting session. Scan barcodes using the continuous camera mode or import your
+          product catalog CSV for autocompletion.</p>
+      </div>
+
+      <div class="step-card">
+        <span class="step-badge">STEP 02</span>
+        <h3 class="step-title">Audit & Organize</h3>
+        <p class="step-desc">Review item quantities, adjust buy/sell prices, and organize counts by store zone or
+          session category.</p>
+      </div>
+
+      <div class="step-card">
+        <span class="step-badge">STEP 03</span>
+        <h3 class="step-title">Export & Sign</h3>
+        <p class="step-desc">Generate certified PDF inventory reports, export Excel spreadsheet files, or print thermal
+          barcode shelf tags instantly.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Harmonized Privacy Callout Banner -->
+  <div class="container">
+    <div class="privacy-banner">
+      <div class="privacy-banner-icon">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+          <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+        </svg>
+      </div>
+      <div class="privacy-banner-content">
+        <h3>Zero Data Collection. 100% Confidential.</h3>
+        <p>Skanzo operates completely offline. We do not track users, collect analytics, host third-party
+          ads, or send your inventory databases to any cloud server. Your commercial numbers remain strictly your
+          private property.</p>
+        <a href="privacy.html" class="privacy-link">
+          Read our complete Privacy Policy
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Harmonized Pricing Section -->
+  <section class="container pricing-section" id="pricing">
+    <div class="section-header">
+      <span class="section-subtitle">Simple Transparent Pricing</span>
+      <h2 class="section-title">No Subscriptions. Pay Once, Use Forever.</h2>
+      <p class="section-desc">Unlock unlimited professional scanning capabilities with a single lifetime purchase.</p>
+    </div>
+
+    <div class="pricing-cards">
+      <!-- Free Plan Card -->
+      <div class="pricing-card">
+        <h3 class="plan-name">Free Tier</h3>
+        <div class="plan-price">$0 <span>/ forever</span></div>
+        <p class="plan-desc">Great for quick basic testing and small stock checks.</p>
+        <ul class="plan-features">
+          <li>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            1 Active Counting Session
+          </li>
+          <li>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            Up to 30 scanned items / count
+          </li>
+          <li>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            Basic 1D & 2D camera scanner
+          </li>
+          <li class="disabled">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+            Unlimited sessions & items
+          </li>
+          <li class="disabled">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+            Full PDF & Excel exports
+          </li>
+          <li class="disabled">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+            Consolidated multi-session audit
+          </li>
+        </ul>
+        <a href="#download" class="store-btn btn-full">Download Free</a>
+      </div>
+
+      <!-- Pro Plan Card -->
+      <div class="pricing-card featured">
+        <div class="featured-badge">Lifetime Access • Pay Once</div>
+        <h3 class="plan-name">Skanzo Pro</h3>
+        <div class="plan-price">€29.99 <span>/ lifetime, excl. tax</span></div>
+        <p class="plan-desc">The complete professional toolkit for shop owners and logistics teams.<br><span
+            style="color: var(--primary-emerald); font-weight: 600; font-size: 0.85rem; margin-top: 8px; display: block;">🌍 One-time purchase • Automatically converted into your local currency by Apple App Store & Google Play Store worldwide (€29.99 or regional equivalent). Price excludes tax; applicable local taxes (e.g. VAT) are added at checkout.</span></p>
+        <ul class="plan-features">
+          <li>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            <strong>Unlimited</strong> counting sessions & items
+          </li>
+          <li>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            <strong>Official certified PDF reports</strong> with signatures
+          </li>
+          <li>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            <strong>Unlimited Excel & CSV</strong> import and export
+          </li>
+          <li>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            <strong>Multi-session consolidation</strong> (Reserve + Shop)
+          </li>
+          <li>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            Thermal & A4 sheet barcode label printing
+          </li>
+          <li>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            Company logo integration on PDF headers
+          </li>
+        </ul>
+        <a href="#download" class="nav-cta btn-full" style="padding: 14px; text-align: center; display: flex;">Upgrade
+          to Pro</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Harmonized FAQ Section -->
+  <section class="container faq-section" id="faq">
+    <div class="section-header">
+      <span class="section-subtitle">Got Questions?</span>
+      <h2 class="section-title">Frequently Asked Questions</h2>
+      <p class="section-desc">Find quick answers about how Skanzo handles your inventory.</p>
+    </div>
+
+    <div class="faq-grid">
+      <div class="faq-item">
+        <div class="faq-question">
+          Does Skanzo require an internet connection?
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </div>
+        <div class="faq-answer">
+          No. Skanzo is 100% offline. All barcode scanning, catalog lookups, SQLite database operations, and
+          PDF generation run directly on your smartphone without using internet data.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          What barcode formats are supported?
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </div>
+        <div class="faq-answer">
+          Skanzo supports all major 1D commercial barcodes (EAN-13, EAN-8, Code 128, Code 39, UPC-A, UPC-E)
+          and 2D formats (QR Code).
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          How does the Lifetime Pro purchase work?
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </div>
+        <div class="faq-answer">
+          Skanzo Pro is a one-time non-consumable purchase (€29.99 excluding tax, or local store equivalent) tied to your Apple ID
+          or Google Account. There are no recurring subscriptions. Prices are processed in your regional store currency, and
+          applicable local taxes (e.g. VAT) are added at checkout. You can restore your unlock on any device using the "Restore Purchases" button in settings.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          Can I import my existing product catalog?
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </div>
+        <div class="faq-answer">
+          Yes! You can import a standard CSV file containing your barcode, product name, and price fields. During scans,
+          the app automatically fills in product names and prices.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          How do I print barcode labels?
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </div>
+        <div class="faq-answer">
+          Skanzo allows you to print individual 100x62mm thermal stickers via Bluetooth or full label grid
+          sheets via AirPrint/Mopria wireless printing.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Harmonized CTA Banner -->
+  <div class="container">
+    <div class="cta-banner">
+      <h2>Transform Your Stock Audits Today</h2>
+      <p>Download Skanzo and experience the fastest, 100% offline mobile inventory scanner.</p>
+      <a href="#download" class="nav-cta" style="padding: 14px 32px; font-size: 1.05rem !important;">Download Skanzo
+        Express</a>
+    </div>
+  </div>
+
+  <!-- Floating Back To Top Button -->
+  <button class="back-to-top" id="backToTop" aria-label="Back to Top">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+      <polyline points="18 15 12 9 6 15"></polyline>
+    </svg>
+  </button>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <a href="index.html" class="brand">
+            <img src="./icon.png" alt="Skanzo Logo">
+            <div class="brand-text">
+              <span class="brand-name">Skanzo</span>
+              <span class="brand-badge">Barcode & Inventory</span>
+            </div>
+          </a>
+          <p>Skanzo is the 100% offline, privacy-first barcode inventory application for retail stores,
+            warehouses, and stock managers.</p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Navigation</h4>
+          <ul>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#workflow">How It Works</a></li>
+            <li><a href="#pricing">Pricing</a></li>
+            <li><a href="#faq">FAQ</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="privacy.html">Privacy Policy</a></li>
+            <li><a href="terms.html">Terms of Service (EULA)</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Contact & Support</h4>
+          <ul>
+            <li><a href="mailto:puludisu.apps@gmail.com">puludisu.apps@gmail.com</a></li>
+            <li><a href="privacy.html#contact">Privacy Enquiries</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>&copy; 2026 Skanzo. All rights reserved.</div>
+        <div>100% On-Device Data Storage &bull; No Cloud Tracking</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    // Tab switching logic
+    function switchTab(index) {
+      const buttons = document.querySelectorAll('.tab-btn');
+      const contents = document.querySelectorAll('.tab-content');
+
+      buttons.forEach((btn, i) => {
+        if (i === index) {
+          btn.classList.add('active');
+        } else {
+          btn.classList.remove('active');
+        }
+      });
+
+      contents.forEach((content, i) => {
+        if (i === index) {
+          content.classList.add('active');
+        } else {
+          content.classList.remove('active');
+        }
+      });
+    }
+
+    // FAQ Accordion logic
+    document.querySelectorAll('.faq-question').forEach(item => {
+      item.addEventListener('click', () => {
+        const parent = item.parentElement;
+        parent.classList.toggle('open');
+      });
+    });
+
+    // Robust Auto-Closing Mobile Menu Logic
+    const menuToggle = document.getElementById('menuToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    function closeMobileMenu() {
+      if (mobileMenu && mobileMenu.classList.contains('active')) {
+        mobileMenu.classList.remove('active');
+        if (menuToggle) menuToggle.setAttribute('aria-expanded', 'false');
+      }
+    }
+
+    if (menuToggle && mobileMenu) {
+      menuToggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isActive = mobileMenu.classList.toggle('active');
+        menuToggle.setAttribute('aria-expanded', isActive ? 'true' : 'false');
+      });
+
+      // Close when clicking ANY link inside mobileMenu
+      mobileMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          closeMobileMenu();
+        });
+      });
+
+      // Close when clicking OUTSIDE the mobileMenu and menuToggle
+      document.addEventListener('click', (e) => {
+        if (!mobileMenu.contains(e.target) && !menuToggle.contains(e.target)) {
+          closeMobileMenu();
+        }
+      });
+
+      // Close on Escape key press
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeMobileMenu();
+      });
+
+      // Close on window resize to desktop
+      window.addEventListener('resize', () => {
+        if (window.innerWidth > 992) closeMobileMenu();
+      });
+    }
+
+    // Scroll to Top Button Visibility & Logic
+    const backToTopBtn = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 400) {
+        backToTopBtn.classList.add('visible');
+      } else {
+        backToTopBtn.classList.remove('visible');
+      }
+    });
+
+    backToTopBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  </script>
+
+</body>
+
+</html>
