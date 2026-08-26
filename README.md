@@ -14,6 +14,7 @@ dependencies.
 |-----|-------------|-----------|-------------|
 | **Notaro** | 100% offline invoicing & quote app for freelancers and small businesses. | [App Store](https://apps.apple.com/app/notaro/id6802968660) | [Google Play](https://play.google.com/store/apps/details?id=com.mmp.notaro) |
 | **Skanzo** | 100% offline barcode scanner & stock inventory app for shops and warehouses. | _Coming soon_ | _Coming soon_ |
+| **LeafPulse** | 100% offline smart plant care journal & calculated watering reminders. | _Coming soon_ | [Google Play](https://play.google.com/store/apps/details?id=com.mmp.leafpulse) |
 
 ## Live pages
 
@@ -26,9 +27,11 @@ GitHub account/organization name once the repo is pushed):
 - Skanzo — landing: `/skanzo/`
 - Skanzo — Privacy Policy: `/skanzo/privacy.html`
 - Skanzo — Terms of Service (EULA): `/skanzo/terms.html`
+- LeafPulse — Privacy Policy: `/leafpulse/privacy.html`
+- LeafPulse — Terms of Service (EULA): `/leafpulse/terms.html`
 
-> The `/notaro/privacy.html` and `/skanzo/privacy.html` URLs are the ones to provide
-> in App Store Connect and Google Play Console as each app's privacy policy link.
+> The `/notaro/privacy.html`, `/skanzo/privacy.html`, and `/leafpulse/privacy.html` URLs
+> are the ones to provide in App Store Connect and Google Play Console as each app's privacy policy link.
 
 ## Deploying
 
