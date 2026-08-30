@@ -15,6 +15,8 @@ dependencies.
 | **Notaro** | 100% offline invoicing & quote app for freelancers and small businesses. | [App Store](https://apps.apple.com/app/notaro/id6802968660) | [Google Play](https://play.google.com/store/apps/details?id=com.mmp.notaro) |
 | **Skanzo** | 100% offline barcode scanner & stock inventory app for shops and warehouses. | _Coming soon_ | _Coming soon_ |
 | **LeafPulse** | 100% offline smart plant care journal & calculated watering reminders. | _Coming soon_ | [Google Play](https://play.google.com/store/apps/details?id=com.mmp.leafpulse) |
+| **ChronoPace** | 100% offline haptic, audio & visual running cadence metronome (SPM). | _Coming soon_ | _Coming soon_ |
+
 
 ## Live pages
 
@@ -29,9 +31,13 @@ GitHub account/organization name once the repo is pushed):
 - Skanzo — Terms of Service (EULA): `/skanzo/terms.html`
 - LeafPulse — Privacy Policy: `/leafpulse/privacy.html`
 - LeafPulse — Terms of Service (EULA): `/leafpulse/terms.html`
+- ChronoPace — landing: `/chronopace/`
+- ChronoPace — Privacy Policy: `/chronopace/privacy.html`
+- ChronoPace — Terms of Service (EULA): `/chronopace/terms.html`
 
-> The `/notaro/privacy.html`, `/skanzo/privacy.html`, and `/leafpulse/privacy.html` URLs
-> are the ones to provide in App Store Connect and Google Play Console as each app's privacy policy link.
+> The `/notaro/privacy.html`, `/skanzo/privacy.html`, `/leafpulse/privacy.html`, and
+> `/chronopace/privacy.html` URLs are the ones to provide in App Store Connect and Google
+> Play Console as each app's privacy policy link.
 
 ## Deploying
 
