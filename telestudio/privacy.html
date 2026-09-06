@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy — TeleStudio Pro</title>
+  <meta name="description" content="TeleStudio Pro Privacy Policy. 100% on-device processing, zero cloud storage, zero tracking SDKs, and total privacy for your video takes and scripts.">
+  <link rel="icon" type="image/png" href="assets/app_icon.png">
+  
+  <style>
+    @font-face {
+      font-family: 'Inter';
+      src: url('assets/fonts/Inter.ttf') format('truetype');
+      font-weight: 100 900;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'JetBrainsMono';
+      src: url('assets/fonts/JetBrainsMono.ttf') format('truetype');
+      font-weight: 100 900;
+      font-display: swap;
+    }
+
+    :root {
+      --bg-dark: #07090E;
+      --bg-card: #0F131E;
+      --bg-surface: #141926;
+      --border-subtle: rgba(255, 255, 255, 0.08);
+      --border-accent: rgba(245, 158, 11, 0.4);
+      --accent: #F59E0B;
+      --accent-glow: rgba(245, 158, 11, 0.22);
+      --accent-gradient: linear-gradient(135deg, #F59E0B 0%, #D97706 100%);
+      --text-main: #F8FAFC;
+      --text-muted: #94A3B8;
+      --text-dim: #64748B;
+      --cyan-badge: #06B6D4;
+      --green-badge: #10B981;
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --font-mono: 'JetBrainsMono', ui-monospace, SFMono-Regular, monospace;
+      --radius-sm: 8px;
+      --radius-md: 16px;
+      --radius-lg: 24px;
+      --shadow-card: 0 20px 50px rgba(0, 0, 0, 0.6), inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      font-family: var(--font-sans);
+      line-height: 1.7;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      background-image: 
+        radial-gradient(circle at 50% 0%, rgba(245, 158, 11, 0.07) 0%, transparent 50%),
+        radial-gradient(circle at 85% 30%, rgba(6, 182, 212, 0.04) 0%, transparent 50%);
+    }
+
+    .bg-grid-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-size: 40px 40px;
+      background-image: 
+        linear-gradient(to right, rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Navigation */
+    nav {
+      position: sticky;
+      top: 0;
+      width: 100%;
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      background: rgba(7, 9, 14, 0.85);
+      border-bottom: 1px solid var(--border-subtle);
+      z-index: 100;
+      padding: 12px 24px;
+    }
+    .nav-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--text-main);
+      font-weight: 800;
+      font-size: 1.18rem;
+      letter-spacing: -0.4px;
+    }
+    .nav-brand img {
+      width: 36px;
+      height: 36px;
+      border-radius: 9px;
+      box-shadow: 0 4px 14px var(--accent-glow);
+    }
+    .nav-brand .tag {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      font-weight: 700;
+      color: var(--accent);
+      background: rgba(245, 158, 11, 0.12);
+      border: 1px solid var(--border-accent);
+      padding: 2px 6px;
+      border-radius: 5px;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 26px;
+    }
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover, .nav-links a.active {
+      color: var(--accent);
+    }
+    .btn-nav {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--accent-gradient);
+      color: #07090E;
+      padding: 8px 18px;
+      border-radius: 9999px;
+      font-weight: 700;
+      font-size: 0.86rem;
+      text-decoration: none;
+      box-shadow: 0 4px 16px var(--accent-glow);
+      transition: transform 0.2s;
+    }
+    .btn-nav:hover {
+      transform: translateY(-1px);
+    }
+
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 60px 24px 100px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .page-header {
+      margin-bottom: 48px;
+      text-align: center;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 16px;
+      background: rgba(16, 185, 129, 0.1);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      border-radius: 999px;
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--green-badge);
+      margin-bottom: 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      box-shadow: 0 2px 14px rgba(16, 185, 129, 0.15);
+    }
+    h1 {
+      font-size: clamp(2.2rem, 4.5vw, 3.2rem);
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -1.2px;
+      margin-bottom: 16px;
+      background: linear-gradient(180deg, #FFFFFF 30%, #CBD5E1 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .last-updated {
+      color: var(--text-dim);
+      font-size: 0.86rem;
+      font-family: var(--font-mono);
+    }
+
+    /* Nutrition Cards with SVGs */
+    .privacy-nutrition-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      margin-bottom: 48px;
+    }
+    .nutrition-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 26px;
+      backdrop-filter: blur(16px);
+      box-shadow: var(--shadow-card);
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .nutrition-card:hover {
+      border-color: rgba(255, 255, 255, 0.2);
+      transform: translateY(-2px);
+    }
+    .nutrition-icon-box {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      background: rgba(245, 158, 11, 0.1);
+      border: 1px solid var(--border-accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent);
+      margin-bottom: 14px;
+    }
+    .nutrition-icon-box svg {
+      width: 22px;
+      height: 22px;
+      stroke: currentColor;
+      stroke-width: 2;
+      fill: none;
+    }
+    .nutrition-card h3 {
+      font-size: 1.1rem;
+      color: #FFFFFF;
+      margin-bottom: 8px;
+      letter-spacing: -0.2px;
+    }
+    .nutrition-status {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 6px;
+      margin-bottom: 10px;
+      background: rgba(16, 185, 129, 0.12);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      color: var(--green-badge);
+    }
+    .nutrition-card p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+    }
+
+    /* Main Policy Card */
+    .policy-content {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 44px;
+      backdrop-filter: blur(20px);
+      box-shadow: var(--shadow-card);
+    }
+    .policy-section {
+      margin-bottom: 38px;
+      padding-bottom: 38px;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .policy-section:last-child {
+      margin-bottom: 0;
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+    .policy-section h2 {
+      font-size: 1.35rem;
+      color: #FFFFFF;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      letter-spacing: -0.3px;
+    }
+    .policy-section h2 .sec-index {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      color: var(--accent);
+      background: rgba(245, 158, 11, 0.1);
+      border: 1px solid rgba(245, 158, 11, 0.25);
+      padding: 3px 10px;
+      border-radius: 6px;
+    }
+    .policy-section p {
+      color: var(--text-muted);
+      font-size: 0.96rem;
+      margin-bottom: 14px;
+      line-height: 1.7;
+    }
+    .policy-section ul {
+      list-style: none;
+      padding: 0;
+      margin: 16px 0;
+    }
+    .policy-section li {
+      position: relative;
+      padding-left: 28px;
+      margin-bottom: 12px;
+      color: var(--text-muted);
+      font-size: 0.94rem;
+    }
+    .policy-section li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: 800;
+    }
+    .policy-section li strong {
+      color: #FFFFFF;
+    }
+
+    .highlight-pill-box {
+      background: rgba(245, 158, 11, 0.06);
+      border-left: 4px solid var(--accent);
+      padding: 16px 20px;
+      border-radius: 0 14px 14px 0;
+      margin: 20px 0;
+      font-size: 0.95rem;
+      color: var(--text-main);
+    }
+
+    code {
+      font-family: var(--font-mono);
+      background: rgba(255, 255, 255, 0.08);
+      padding: 2px 7px;
+      border-radius: 5px;
+      color: var(--accent);
+      font-size: 0.88em;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--border-subtle);
+      padding: 50px 0 30px;
+      background: #05070B;
+      font-size: 0.9rem;
+      color: var(--text-dim);
+    }
+    .footer-grid {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-bottom: 24px;
+    }
+    .footer-links {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .footer-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover {
+      color: var(--text-main);
+    }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .policy-content { padding: 24px; }
+      .footer-grid { flex-direction: column; text-align: center; }
+      .privacy-nutrition-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="bg-grid-overlay"></div>
+
+  <!-- Navigation -->
+  <nav>
+    <div class="nav-container">
+      <a href="index.html" class="nav-brand">
+        <img src="assets/app_icon.png" alt="TeleStudio Pro Icon">
+        <span>TeleStudio</span>
+        <span class="tag">PRO</span>
+      </a>
+      <div class="nav-links">
+        <a href="index.html#features">Features</a>
+        <a href="index.html#pricing">Pricing</a>
+        <a href="index.html#faq">FAQ</a>
+        <a href="support.html">Support</a>
+      </div>
+      <a href="index.html#pricing" class="btn-nav">Get TeleStudio Pro</a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="page-header">
+      <div class="badge">Privacy by Architecture</div>
+      <h1>Privacy Policy</h1>
+      <div class="last-updated">Last Updated: September 4, 2026 · Compliant with Apple App Store &amp; Google Play Guidelines &amp; GDPR</div>
+    </div>
+
+    <!-- Apple Privacy Nutrition Labels Overview with Geometric SVGs -->
+    <div class="privacy-nutrition-grid">
+      <div class="nutrition-card">
+        <div class="nutrition-icon-box">
+          <svg viewBox="0 0 24 24"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><path d="M12 19v4"/><path d="M8 23h8"/></svg>
+        </div>
+        <h3>Voice &amp; Speech Data</h3>
+        <span class="nutrition-status">100% On-Device</span>
+        <p>Speech recognition runs strictly on your device's on-device neural engine (Apple Neural Engine on iOS, the system recognizer on Android). Voice audio is never streamed or stored in the cloud.</p>
+      </div>
+
+      <div class="nutrition-card">
+        <div class="nutrition-icon-box">
+          <svg viewBox="0 0 24 24"><path d="m22 8-6 4 6 4V8Z"/><rect width="14" height="12" x="2" y="6" rx="2"/></svg>
+        </div>
+        <h3>Camera &amp; Video Takes</h3>
+        <span class="nutrition-status">Local Sandbox Only</span>
+        <p>4K recordings remain strictly on your device. Video files are only exported when you explicitly save to Photos / Gallery or share them.</p>
+      </div>
+
+      <div class="nutrition-card">
+        <div class="nutrition-icon-box">
+          <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        </div>
+        <h3>Scripts &amp; Teleprompter Text</h3>
+        <span class="nutrition-status">Zero Cloud Synced</span>
+        <p>Your scripts are stored locally in encrypted on-device storage. No remote database or third-party servers ever read your words.</p>
+      </div>
+
+      <div class="nutrition-card">
+        <div class="nutrition-icon-box">
+          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h3>Tracking &amp; Analytics</h3>
+        <span class="nutrition-status">Zero Trackers</span>
+        <p>No advertising SDKs, no behavioral tracking, no third-party analytics (no Google Analytics, no Firebase, no Meta pixel).</p>
+      </div>
+    </div>
+
+    <!-- Detailed Policy Document -->
+    <div class="policy-content">
+
+      <!-- Section 1 -->
+      <div class="policy-section">
+        <h2><span class="sec-index">01</span> Overview &amp; Data Controller</h2>
+        <p>
+          This Privacy Policy governs the <strong>TeleStudio Pro</strong> application (Bundle / Application ID: <code>com.mmp.telestudio</code>), available on iOS, iPadOS, and Android.
+        </p>
+        <p>
+          TeleStudio Pro was built for investigative journalists, corporate executives, filmmakers, content creators, and educators whose drafts and unedited takes are confidential. <strong>We do not collect, monetize, transmit, or sell any of your personal data.</strong>
+        </p>
+        <p>
+          Data Controller Contact: <a href="mailto:puludisu.apps@gmail.com" style="color: var(--accent); text-decoration: underline;">puludisu.apps@gmail.com</a>
+        </p>
+      </div>
+
+      <!-- Section 2 -->
+      <div class="policy-section">
+        <h2><span class="sec-index">02</span> Device Permissions Requested</h2>
+        <p>
+          To operate as a broadcast video recording studio and teleprompter, TeleStudio Pro requests the following system permissions (shown with their iOS usage-description keys; Android requests the equivalent runtime permissions — Camera, Microphone, and media access):
+        </p>
+        <ul>
+          <li>
+            <strong>Camera (<code>NSCameraUsageDescription</code>):</strong> Used solely to provide real-time preview and capture high-resolution 4K/1080p video while you read your teleprompter script.
+          </li>
+          <li>
+            <strong>Microphone (<code>NSMicrophoneUsageDescription</code>):</strong> Used exclusively to record synchronized audio for your video takes and to power the real-time speech tracking engine.
+          </li>
+          <li>
+            <strong>Speech Recognition (<code>NSSpeechRecognitionUsageDescription</code> on iOS):</strong> Powers the Voice-Tracking feature using the platform's on-device speech recognizer (Apple <code>SFSpeechRecognizer</code> on iOS, the Android <code>SpeechRecognizer</code> on Android). Speech is processed offline directly on your device.
+          </li>
+          <li>
+            <strong>Photo / Media Library (<code>NSPhotoLibraryAddUsageDescription</code> · Android media access):</strong> Required only when you choose to export finished takes directly to your Photos / Gallery.
+          </li>
+          <li>
+            <strong>Local Network (<code>NSLocalNetworkUsageDescription</code> on iOS):</strong> Used only when you launch the "Duo Remote" feature to establish a direct, peer-to-peer connection between your filming device and a remote control device on your local Wi-Fi. Android uses standard local networking and shows no separate prompt.
+          </li>
+        </ul>
+        <div class="highlight-pill-box">
+          <strong>Security Guarantee:</strong> None of these permissions grant access to external cloud services. All operations remain confined to your device.
+        </div>
+      </div>
+
+      <!-- Section 3 -->
+      <div class="policy-section">
+        <h2><span class="sec-index">03</span> Complete Absence of Third-Party Trackers</h2>
+        <p>
+          TeleStudio Pro contains zero advertising or profiling frameworks:
+        </p>
+        <ul>
+          <li><strong>No Ad Networks:</strong> No Google AdMob, Meta Audience Network, Unity Ads, or similar commercial ad SDKs.</li>
+          <li><strong>No Analytics Beacons:</strong> No Google Analytics, Firebase Analytics, AppsFlyer, Mixpanel, or Amplitude.</li>
+          <li><strong>No Advertising ID:</strong> We never request Apple's Identifier for Advertisers (IDFA) or Google's Advertising ID (GAID).</li>
+          <li><strong>No Account Required:</strong> You never need to enter an email address, password, or profile information to use the app.</li>
+        </ul>
+      </div>
+
+      <!-- Section 4 -->
+      <div class="policy-section">
+        <h2><span class="sec-index">04</span> In-App Purchases (Apple StoreKit &amp; Google Play Billing)</h2>
+        <p>
+          TeleStudio Pro is sold as a single lifetime purchase managed directly by the platform store — Apple StoreKit on iOS and Google Play Billing on Android:
+        </p>
+        <ul>
+          <li>We never receive or store your credit card details, billing address, or store-account credentials.</li>
+          <li>Purchase verification and restoration are handled cryptographically by Apple's and Google's secure servers.</li>
+          <li>All purchase disputes or refund requests are governed by Apple's App Store or Google Play refund policies.</li>
+        </ul>
+      </div>
+
+      <!-- Section 5 -->
+      <div class="policy-section">
+        <h2><span class="sec-index">05</span> Duo Remote Architecture</h2>
+        <p>
+          The Duo Remote controller feature runs a temporary local HTTP/WebSocket server inside the app:
+        </p>
+        <ul>
+          <li>Communication is strictly confined to your local Wi-Fi subnet (LAN).</li>
+          <li>Connection requires a dynamic, randomized 4-digit PIN generated directly on the filming screen.</li>
+          <li>No traffic is routed through cloud relay servers, proxies, or external networks — the server is reachable only on your local network, never from the Internet, and is torn down when you close the app.</li>
+        </ul>
+      </div>
+
+      <!-- Section 6 -->
+      <div class="policy-section">
+        <h2><span class="sec-index">06</span> Data Retention &amp; Erasure</h2>
+        <p>
+          Because all scripts, settings, and video files reside strictly in the local app container on your device:
+        </p>
+        <ul>
+          <li>You can delete individual scripts or video takes at any time within the app's gallery views.</li>
+          <li>Deleting the TeleStudio app from your device immediately and permanently deletes all locally stored data.</li>
+        </ul>
+      </div>
+
+      <!-- Section 7 -->
+      <div class="policy-section">
+        <h2><span class="sec-index">07</span> Contact Information</h2>
+        <p>
+          If you have any questions or privacy concerns regarding TeleStudio Pro, feel free to contact us at:
+        </p>
+        <p>
+          <strong>Email:</strong> <a href="mailto:puludisu.apps@gmail.com" style="color: var(--accent); text-decoration: underline;">puludisu.apps@gmail.com</a>
+        </p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container" style="padding-top: 0; padding-bottom: 0;">
+      <div class="footer-grid">
+        <div>
+          <strong style="color: #FFFFFF; font-size: 1.05rem;">TeleStudio Pro</strong>
+          <p style="margin-top: 4px;">Cinema-grade teleprompter for creators who demand privacy.</p>
+        </div>
+        <div class="footer-links">
+          <a href="index.html">Home</a>
+          <a href="terms.html">Terms &amp; EULA</a>
+          <a href="privacy.html" style="color: var(--accent);">Privacy Policy</a>
+          <a href="support.html">Support</a>
+        </div>
+      </div>
+      <div style="text-align: center; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 24px;">
+        &copy; 2026 TeleStudio Pro. All rights reserved. Apple, iPhone, and App Store are trademarks of Apple Inc. Google Play and the Google Play logo are trademarks of Google LLC.
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

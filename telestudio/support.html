@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Help Center &amp; Support — TeleStudio Pro</title>
+  <meta name="description" content="Official TeleStudio Pro Help Center. Setup guides for Voice Tracking, wireless Duo Remote, permissions troubleshooting, and restoring your Lifetime Pro purchase.">
+  <link rel="icon" type="image/png" href="assets/app_icon.png">
+  
+  <style>
+    @font-face {
+      font-family: 'Inter';
+      src: url('assets/fonts/Inter.ttf') format('truetype');
+      font-weight: 100 900;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'JetBrainsMono';
+      src: url('assets/fonts/JetBrainsMono.ttf') format('truetype');
+      font-weight: 100 900;
+      font-display: swap;
+    }
+
+    :root {
+      --bg-dark: #07090E;
+      --bg-card: #0F131E;
+      --bg-surface: #141926;
+      --border-subtle: rgba(255, 255, 255, 0.08);
+      --border-accent: rgba(245, 158, 11, 0.4);
+      --accent: #F59E0B;
+      --accent-glow: rgba(245, 158, 11, 0.22);
+      --accent-gradient: linear-gradient(135deg, #F59E0B 0%, #D97706 100%);
+      --text-main: #F8FAFC;
+      --text-muted: #94A3B8;
+      --text-dim: #64748B;
+      --cyan-badge: #06B6D4;
+      --green-badge: #10B981;
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --font-mono: 'JetBrainsMono', ui-monospace, SFMono-Regular, monospace;
+      --radius-sm: 8px;
+      --radius-md: 16px;
+      --radius-lg: 24px;
+      --shadow-card: 0 20px 50px rgba(0, 0, 0, 0.6), inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      font-family: var(--font-sans);
+      line-height: 1.7;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      background-image: 
+        radial-gradient(circle at 50% 0%, rgba(6, 182, 212, 0.07) 0%, transparent 50%),
+        radial-gradient(circle at 85% 30%, rgba(245, 158, 11, 0.04) 0%, transparent 50%);
+    }
+
+    .bg-grid-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-size: 40px 40px;
+      background-image: 
+        linear-gradient(to right, rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      width: 100%;
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      background: rgba(7, 9, 14, 0.85);
+      border-bottom: 1px solid var(--border-subtle);
+      z-index: 100;
+      padding: 12px 24px;
+    }
+    .nav-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--text-main);
+      font-weight: 800;
+      font-size: 1.18rem;
+      letter-spacing: -0.4px;
+    }
+    .nav-brand img {
+      width: 36px;
+      height: 36px;
+      border-radius: 9px;
+      box-shadow: 0 4px 14px var(--accent-glow);
+    }
+    .nav-brand .tag {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      font-weight: 700;
+      color: var(--accent);
+      background: rgba(245, 158, 11, 0.12);
+      border: 1px solid var(--border-accent);
+      padding: 2px 6px;
+      border-radius: 5px;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 26px;
+    }
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover, .nav-links a.active {
+      color: var(--accent);
+    }
+    .btn-nav {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--accent-gradient);
+      color: #07090E;
+      padding: 8px 18px;
+      border-radius: 9999px;
+      font-weight: 700;
+      font-size: 0.86rem;
+      text-decoration: none;
+      box-shadow: 0 4px 16px var(--accent-glow);
+      transition: transform 0.2s;
+    }
+    .btn-nav:hover {
+      transform: translateY(-1px);
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 60px 24px 100px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .page-header {
+      margin-bottom: 48px;
+      text-align: center;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 16px;
+      background: rgba(6, 182, 212, 0.1);
+      border: 1px solid rgba(6, 182, 212, 0.3);
+      border-radius: 999px;
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--cyan-badge);
+      margin-bottom: 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      box-shadow: 0 2px 14px var(--cyan-glow);
+    }
+    h1 {
+      font-size: clamp(2.2rem, 4.8vw, 3.2rem);
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -1.2px;
+      margin-bottom: 16px;
+      background: linear-gradient(180deg, #FFFFFF 30%, #CBD5E1 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .header-sub {
+      font-size: 1.12rem;
+      color: var(--text-muted);
+      max-width: 620px;
+      margin: 0 auto;
+    }
+
+    /* Cards Grid */
+    .support-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 22px;
+      margin-bottom: 48px;
+    }
+    .support-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 30px 26px;
+      backdrop-filter: blur(16px);
+      box-shadow: var(--shadow-card);
+      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+    .support-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(255, 255, 255, 0.2);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
+    }
+    .support-icon-box {
+      width: 46px;
+      height: 46px;
+      border-radius: 12px;
+      background: rgba(245, 158, 11, 0.1);
+      border: 1px solid var(--border-accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent);
+      margin-bottom: 18px;
+      box-shadow: 0 4px 14px var(--accent-glow);
+    }
+    .support-icon-box svg {
+      width: 22px;
+      height: 22px;
+      stroke: currentColor;
+      stroke-width: 2;
+      fill: none;
+    }
+    .support-card h3 {
+      font-size: 1.18rem;
+      color: #FFFFFF;
+      margin-bottom: 8px;
+      letter-spacing: -0.2px;
+    }
+    .support-card p {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+      line-height: 1.6;
+    }
+    .support-card a.link-btn {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.88rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: gap 0.2s;
+    }
+    .support-card a.link-btn:hover {
+      gap: 10px;
+    }
+
+    /* Detailed Help Container */
+    .faq-container {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 40px;
+      backdrop-filter: blur(20px);
+      margin-bottom: 48px;
+      box-shadow: var(--shadow-card);
+    }
+    .faq-container h2 {
+      font-size: 1.5rem;
+      color: #FFFFFF;
+      margin-bottom: 24px;
+      border-bottom: 1px solid var(--border-subtle);
+      padding-bottom: 16px;
+      letter-spacing: -0.4px;
+    }
+    details.help-item {
+      border: 1px solid var(--border-subtle);
+      border-radius: 14px;
+      padding: 18px 22px;
+      margin-bottom: 14px;
+      background: rgba(10, 13, 21, 0.6);
+      transition: border-color 0.2s;
+    }
+    details.help-item[open] {
+      border-color: var(--border-accent);
+      background: rgba(20, 26, 40, 0.6);
+    }
+    summary.help-question {
+      font-weight: 700;
+      cursor: pointer;
+      color: var(--text-main);
+      font-size: 1.05rem;
+      outline: none;
+      user-select: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    summary.help-question::-webkit-details-marker {
+      display: none;
+    }
+    summary.help-question::after {
+      content: '+';
+      color: var(--accent);
+      font-size: 1.3rem;
+      font-weight: 400;
+    }
+    details.help-item[open] summary.help-question::after {
+      content: '−';
+    }
+    details.help-item p {
+      margin-top: 14px;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.65;
+    }
+    details.help-item ol {
+      margin-top: 12px;
+      padding-left: 22px;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+    details.help-item li {
+      margin-bottom: 8px;
+    }
+    code {
+      font-family: var(--font-mono);
+      background: rgba(255, 255, 255, 0.08);
+      padding: 2px 7px;
+      border-radius: 5px;
+      color: var(--accent);
+      font-size: 0.88em;
+    }
+
+    /* Contact Card */
+    .contact-box {
+      background: linear-gradient(135deg, #131826 0%, #0B0E17 100%);
+      border: 1px solid var(--border-accent);
+      border-radius: var(--radius-lg);
+      padding: 44px 32px;
+      text-align: center;
+      box-shadow: 
+        0 25px 70px rgba(0, 0, 0, 0.6),
+        0 0 50px rgba(245, 158, 11, 0.08),
+        inset 0 1px 1px 0 rgba(255, 255, 255, 0.15);
+    }
+    .contact-box h2 {
+      font-size: 1.6rem;
+      color: #FFFFFF;
+      margin-bottom: 12px;
+      letter-spacing: -0.4px;
+    }
+    .contact-box p {
+      color: var(--text-muted);
+      max-width: 580px;
+      margin: 0 auto 26px;
+      font-size: 0.98rem;
+    }
+    .contact-actions {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .btn-mail {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--accent-gradient);
+      color: #07090E;
+      padding: 13px 28px;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 0.98rem;
+      text-decoration: none;
+      box-shadow: 0 4px 20px var(--accent-glow);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .btn-mail:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 26px rgba(245, 158, 11, 0.4);
+    }
+    .btn-mail svg {
+      width: 18px;
+      height: 18px;
+      stroke: currentColor;
+      stroke-width: 2.2;
+      fill: none;
+    }
+    .btn-copy {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.06);
+      color: #FFFFFF;
+      padding: 13px 22px;
+      border-radius: 12px;
+      border: 1px solid var(--border-subtle);
+      font-weight: 600;
+      font-size: 0.98rem;
+      cursor: pointer;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .btn-copy:hover {
+      background: rgba(255, 255, 255, 0.12);
+      border-color: rgba(255, 255, 255, 0.25);
+    }
+    .btn-copy svg {
+      width: 18px;
+      height: 18px;
+      stroke: currentColor;
+      stroke-width: 2;
+      fill: none;
+    }
+
+    footer {
+      border-top: 1px solid var(--border-subtle);
+      padding: 50px 0 30px;
+      background: #05070B;
+      font-size: 0.9rem;
+      color: var(--text-dim);
+    }
+    .footer-grid {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-bottom: 24px;
+    }
+    .footer-links {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .footer-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover {
+      color: var(--text-main);
+    }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .faq-container { padding: 24px; }
+      .contact-box { padding: 28px 20px; }
+      .footer-grid { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="bg-grid-overlay"></div>
+
+  <!-- Navigation -->
+  <nav>
+    <div class="nav-container">
+      <a href="index.html" class="nav-brand">
+        <img src="assets/app_icon.png" alt="TeleStudio Pro Icon">
+        <span>TeleStudio</span>
+        <span class="tag">PRO</span>
+      </a>
+      <div class="nav-links">
+        <a href="index.html#features">Features</a>
+        <a href="index.html#pricing">Pricing</a>
+        <a href="index.html#faq">FAQ</a>
+        <a href="support.html" class="active">Support</a>
+      </div>
+      <a href="index.html#pricing" class="btn-nav">Get TeleStudio Pro</a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="page-header">
+      <div class="badge">Official Customer Support</div>
+      <h1>Help Center &amp; Support</h1>
+      <p class="header-sub">Find quick troubleshooting guides, configuration steps, and contact our engineering team directly.</p>
+    </div>
+
+    <!-- Quick Help Cards with Clean SVGs -->
+    <div class="support-cards-grid">
+      <div class="support-card">
+        <div class="support-icon-box">
+          <svg viewBox="0 0 24 24"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><path d="M12 19v4"/><path d="M8 23h8"/></svg>
+        </div>
+        <h3>Voice Tracking Setup</h3>
+        <p>Ensure speech recognition and microphone permissions are properly enabled in your phone's Settings for responsive scrolling.</p>
+        <a href="#voicetracking" class="link-btn">View setup guide &rarr;</a>
+      </div>
+
+      <div class="support-card">
+        <div class="support-icon-box">
+          <svg viewBox="0 0 24 24"><path d="M4.9 19.1C1 15.2 1 8.8 4.9 4.9"/><path d="M7.8 16.2c-2.3-2.3-2.3-6.1 0-8.5"/><circle cx="12" cy="12" r="2"/><path d="M16.2 7.8c2.3 2.3 2.3 6.1 0 8.5"/><path d="M19.1 4.9C23 8.8 23 15.2 19.1 19.1"/></svg>
+        </div>
+        <h3>Wireless Duo Remote</h3>
+        <p>Connect any phone, tablet, or computer as a remote director console with a single 4-digit PIN on local Wi-Fi.</p>
+        <a href="#duoremote" class="link-btn">Pairing instructions &rarr;</a>
+      </div>
+
+      <div class="support-card">
+        <div class="support-icon-box">
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <h3>Restore Lifetime Pro</h3>
+        <p>Restoring your one-time purchase when moving to a new phone or tablet via the App Store or Google Play.</p>
+        <a href="#restore" class="link-btn">Restore purchases &rarr;</a>
+      </div>
+    </div>
+
+    <!-- FAQ / Troubleshooting Details -->
+    <div class="faq-container">
+      <h2>Troubleshooting &amp; User Guides</h2>
+
+      <!-- Item 1: Voice Tracking -->
+      <details class="help-item" id="voicetracking" open>
+        <summary class="help-question">How do I fix or optimize AI Voice Tracking?</summary>
+        <p>
+          TeleStudio uses your device's on-device neural speech recognizer to advance the teleprompter based on your spoken words. If the script does not scroll with your voice:
+        </p>
+        <ol>
+          <li>Open your phone's <strong>Settings</strong> app and tap <strong>TeleStudio</strong> (or Apps → TeleStudio on Android).</li>
+          <li>Verify that <strong>Microphone</strong> (and, on iOS, <strong>Speech Recognition</strong>) permissions are switched ON.</li>
+          <li>In the studio recording screen, tap the microphone badge to toggle from manual speed to <strong>Voice Tracking</strong> mode. Speak at a natural speaking volume.</li>
+        </ol>
+      </details>
+
+      <!-- Item 2: Duo Remote -->
+      <details class="help-item" id="duoremote">
+        <summary class="help-question">How do I connect the wireless Duo Remote control?</summary>
+        <p>
+          The Duo Remote works over your local network — from any browser (zero install) or from the TeleStudio app's built-in touch pad:
+        </p>
+        <ol>
+          <li>Ensure both the filming device and the remote controller (phone, tablet, Mac, or PC) are on the <strong>same Wi-Fi network</strong>, or connect the controller to the filming device's <strong>Personal Hotspot</strong>.</li>
+          <li>In TeleStudio, tap the <strong>Duo Remote</strong> button on the studio screen to reveal a QR code, a local URL (e.g. <code>http://192.168.1.50:8080</code>), and a <strong>4-digit PIN</strong>.</li>
+          <li><strong>Browser:</strong> scan the QR code or open the URL on the second device and enter the PIN.</li>
+          <li><strong>In-app:</strong> on the second device, open the <strong>Remote → Controller</strong> tab and tap <strong>"Scanner le QR Code du Studio"</strong> to pair instantly with the camera (or expand manual entry to type the IP and PIN).</li>
+          <li>Control scroll speed, play/pause, line jumps, blackout, and recording live.</li>
+        </ol>
+        <p style="margin-top:12px">
+          <strong>Bluetooth remotes:</strong> presentation clickers and pedals also work with no network at all — pair them to the filming device, then use their Up/Down/Page/Space keys to drive play/pause, speed, and line jumps.
+        </p>
+        <p style="margin-top:12px">
+          <strong>Connection refused?</strong> The two devices are on the network but the studio isn't serving on that port — make sure the filming device is foregrounded on the Studio or Remote screen, use the exact address/PIN shown there, and (on iOS) allow Local Network access in Settings.
+        </p>
+      </details>
+
+      <!-- Item 3: Restore Purchase -->
+      <details class="help-item" id="restore">
+        <summary class="help-question">How do I restore my Lifetime Pro license on a new device?</summary>
+        <p>
+          Your Lifetime Pro license is permanently tied to your store account — your Apple ID on iOS or your Google account on Android:
+        </p>
+        <ol>
+          <li>Install TeleStudio Pro from the App Store or Google Play on your new device using the same account.</li>
+          <li>Open the in-app Settings menu or the Pro upgrade screen.</li>
+          <li>Tap <strong>"Restore Purchases"</strong>.</li>
+          <li>Apple StoreKit or Google Play will instantly validate your receipt and restore all Pro features with no additional fee.</li>
+        </ol>
+      </details>
+
+      <!-- Item 4: Eye-Line Optimizer -->
+      <details class="help-item">
+        <summary class="help-question">How does Eye-Line Optimizer eliminate the "reading eyes" look?</summary>
+        <p>
+          Traditional teleprompters span the entire width of the display, causing your pupils to constantly dart left and right. TeleStudio's Eye-Line Optimizer centers and constrains the reading zone right beneath the camera lens cutout, keeping your gaze locked directly with your viewer.
+        </p>
+      </details>
+
+      <!-- Item 5: Exporting Takes -->
+      <details class="help-item">
+        <summary class="help-question">How do I export 4K takes and synchronized subtitles?</summary>
+        <p>
+          In the Gallery view, select any recorded take:
+        </p>
+        <ol>
+          <li>Tap <strong>Save to Photos</strong> to transfer the full-resolution MP4 or MOV video into your Camera Roll.</li>
+          <li>Tap <strong>Export .SRT</strong> to generate time-coded subtitle files ready for Final Cut Pro, Adobe Premiere, or DaVinci Resolve.</li>
+          <li>Tap <strong>Extract Audio (M4A)</strong> to pull the high-fidelity audio track from a take.</li>
+          <li>Tap <strong>Share via AirDrop</strong> to send pristine raw video directly to your editing workstation.</li>
+        </ol>
+      </details>
+    </div>
+
+    <!-- Contact Support Box with SVG Icons -->
+    <div class="contact-box">
+      <h2>Still Have Questions?</h2>
+      <p>Our engineering team responds to all inquiries, bug reports, and feature requests within 24 business hours.</p>
+      <div class="contact-actions">
+        <a href="mailto:puludisu.apps@gmail.com?subject=TeleStudio%20Pro%20Support%20Request" class="btn-mail">
+          <svg viewBox="0 0 24 24"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          Send Us an Email
+        </a>
+        <button class="btn-copy" id="copyEmailBtn" onclick="copyEmail()">
+          <svg viewBox="0 0 24 24"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+          <span id="copyBtnText">Copy Email Address</span>
+        </button>
+      </div>
+      <p style="margin-top: 20px; font-size: 0.88rem; color: var(--text-dim);">
+        Direct contact: <code id="emailText">puludisu.apps@gmail.com</code>
+      </p>
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container" style="padding-top: 0; padding-bottom: 0;">
+      <div class="footer-grid">
+        <div>
+          <strong style="color: #FFFFFF; font-size: 1.05rem;">TeleStudio Pro</strong>
+          <p style="margin-top: 4px;">Cinema-grade teleprompter for creators who demand privacy.</p>
+        </div>
+        <div class="footer-links">
+          <a href="index.html">Home</a>
+          <a href="terms.html">Terms &amp; EULA</a>
+          <a href="privacy.html">Privacy Policy</a>
+          <a href="support.html" style="color: var(--accent);">Support</a>
+        </div>
+      </div>
+      <div style="text-align: center; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 24px;">
+        &copy; 2026 TeleStudio Pro. All rights reserved. Apple, iPhone, and App Store are trademarks of Apple Inc. Google Play and the Google Play logo are trademarks of Google LLC.
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function copyEmail() {
+      const email = "puludisu.apps@gmail.com";
+      navigator.clipboard.writeText(email).then(() => {
+        const textSpan = document.getElementById('copyBtnText');
+        textSpan.textContent = "✓ Email Copied to Clipboard!";
+        setTimeout(() => {
+          textSpan.textContent = "Copy Email Address";
+        }, 2500);
+      });
+    }
+  </script>
+
+</body>
+</html>
