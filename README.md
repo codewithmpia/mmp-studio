@@ -12,10 +12,11 @@ dependencies.
 
 | App | Description | App Store | Google Play |
 |-----|-------------|-----------|-------------|
-| **Notaro** | 100% offline invoicing & quote app for freelancers and small businesses. | [App Store](https://apps.apple.com/app/notaro/id6802968660) | [Google Play](https://play.google.com/store/apps/details?id=com.mmp.notaro) |
-| **Skanzo** | 100% offline barcode scanner & stock inventory app for shops and warehouses. | _Coming soon_ | _Coming soon_ |
-| **LeafPulse** | 100% offline smart plant care journal & calculated watering reminders. | _Coming soon_ | [Google Play](https://play.google.com/store/apps/details?id=com.mmp.leafpulse) |
-| **ChronoPace** | 100% offline haptic, audio & visual running cadence metronome (SPM). | _Coming soon_ | _Coming soon_ |
+| **Notaro** | 100% offline invoicing & quote app for freelancers and small businesses. | [App Store](https://apps.apple.com/fr/app/notaro-devis-factures/id6802968660) | _Coming soon_ |
+| **Skanzo** | 100% offline barcode scanner & stock inventory app for shops and warehouses. | [App Store](https://apps.apple.com/fr/app/skanzo-inventaire-scan/id6804024920) | _Coming soon_ |
+| **LeafPulse** | 100% offline smart plant care journal & calculated watering reminders. | [App Store](https://apps.apple.com/fr/app/leafpulse-arrosage-plantes/id6805659559) | _Coming soon_ |
+| **ChronoPace** | 100% offline haptic, audio & visual running cadence metronome (SPM). | [App Store](https://apps.apple.com/fr/app/chronopace-cadence-running/id6806511004) | _Coming soon_ |
+| **TeleStudio** | 100% offline 4K 60 FPS studio teleprompter with AI voice tracking & Duo Remote. | [App Store](https://apps.apple.com/app/telestudio/id6742398511) | _Coming soon_ |
 
 
 ## Live pages
@@ -34,9 +35,13 @@ GitHub account/organization name once the repo is pushed):
 - ChronoPace — landing: `/chronopace/`
 - ChronoPace — Privacy Policy: `/chronopace/privacy.html`
 - ChronoPace — Terms of Service (EULA): `/chronopace/terms.html`
+- TeleStudio — landing: `/telestudio/`
+- TeleStudio — Privacy Policy: `/telestudio/privacy.html`
+- TeleStudio — Terms of Service (EULA): `/telestudio/terms.html`
+- TeleStudio — Support: `/telestudio/support.html`
 
-> The `/notaro/privacy.html`, `/skanzo/privacy.html`, `/leafpulse/privacy.html`, and
-> `/chronopace/privacy.html` URLs are the ones to provide in App Store Connect and Google
+> The `/notaro/privacy.html`, `/skanzo/privacy.html`, `/leafpulse/privacy.html`, `/chronopace/privacy.html`, and
+> `/telestudio/privacy.html` URLs are the ones to provide in App Store Connect and Google
 > Play Console as each app's privacy policy link.
 
 ## Deploying
