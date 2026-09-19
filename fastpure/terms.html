@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Terms of Service — FastPure</title>
+  <meta name="description" content="Official Terms of Service for FastPure - 100% private, offline intermittent fasting timer and tracking software.">
+  <meta name="robots" content="index, follow">
+  <style>
+    @font-face {
+      font-family: 'Outfit';
+      font-style: normal;
+      font-weight: 400 800;
+      font-display: swap;
+      src: url('fonts/outfit-latin.woff2') format('woff2');
+    }
+
+    @font-face {
+      font-family: 'JetBrains Mono';
+      font-style: normal;
+      font-weight: 400 500;
+      font-display: swap;
+      src: url('fonts/jetbrainsmono-latin.woff2') format('woff2');
+    }
+
+    :root {
+      --bg: #090a0f;
+      --surface: #131622;
+      --surface-light: #1b2030;
+      --border: #232b3e;
+      --border-accent: rgba(8, 183, 197, 0.35);
+      
+      --text-primary: #f8fafc;
+      --text-secondary: #94a3b8;
+      --text-muted: #64748b;
+      
+      --cyan: #08b7c5;
+      --teal: #0db898;
+      --cyan-glow: rgba(8, 183, 197, 0.14);
+      --cyan-gradient: linear-gradient(135deg, #08b7c5 0%, #0db898 100%);
+      
+      --red: #ef4444;
+      --red-glow: rgba(239, 68, 68, 0.1);
+      
+      --radius-xl: 24px;
+      --radius-lg: 16px;
+      --radius-md: 12px;
+      --radius-sm: 8px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text-primary);
+      font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+      line-height: 1.7;
+      font-size: 16px;
+      -webkit-font-smoothing: antialiased;
+      padding-bottom: 80px;
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #090a0f;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #232b3e;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #08b7c5;
+    }
+
+    /* Text Selection */
+    ::selection {
+      background: rgba(8, 183, 197, 0.3);
+      color: #ffffff;
+    }
+
+    /* Ambient logo color glow */
+    .bg-gradient {
+      position: fixed;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100vw;
+      max-width: 1200px;
+      height: 550px;
+      background: radial-gradient(circle at 50% -60px, rgba(8, 183, 197, 0.14), transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Sticky Header Navigation */
+    .nav-bar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(9, 10, 15, 0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-content {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+
+    .brand-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(8, 183, 197, 0.25);
+      transition: transform 0.2s ease;
+    }
+
+    .brand:hover .brand-icon {
+      transform: scale(1.05);
+    }
+
+    .brand-name {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--text-primary);
+      letter-spacing: -0.01em;
+    }
+
+    .nav-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      background: var(--cyan-glow);
+      color: var(--cyan);
+      padding: 5px 14px;
+      border-radius: 100px;
+      border: 1px solid rgba(8, 183, 197, 0.25);
+    }
+
+    .pulse {
+      width: 6px;
+      height: 6px;
+      background-color: var(--cyan);
+      border-radius: 50%;
+      box-shadow: 0 0 8px var(--cyan);
+      animation: pulseAnim 2s infinite;
+    }
+
+    @keyframes pulseAnim {
+      0% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.85); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+
+    .tab-group {
+      display: flex;
+      background: rgba(255, 255, 255, 0.03);
+      padding: 3px;
+      border-radius: 100px;
+      border: 1px solid var(--border);
+    }
+
+    .tab-item {
+      padding: 6px 18px;
+      border-radius: 100px;
+      text-decoration: none;
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: all 0.2s ease;
+    }
+
+    .tab-item.active {
+      background: var(--cyan-gradient);
+      color: #090a0f;
+      font-weight: 700;
+      box-shadow: 0 2px 10px rgba(8, 183, 197, 0.3);
+    }
+
+    .tab-item:hover:not(.active) {
+      color: var(--text-primary);
+    }
+
+    /* Container */
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 48px 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Hero Section */
+    .hero {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    .hero-icon-stage {
+      position: relative;
+      display: inline-block;
+      margin-bottom: 20px;
+    }
+
+    .hero-icon-glow {
+      position: absolute;
+      top: -8px;
+      left: -8px;
+      right: -8px;
+      bottom: -8px;
+      background: radial-gradient(circle, var(--cyan-glow) 0%, transparent 70%);
+      border-radius: 28px;
+    }
+
+    .hero-icon {
+      width: 96px;
+      height: 96px;
+      border-radius: 22px;
+      position: relative;
+      z-index: 2;
+      box-shadow: 0 16px 36px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.2), 0 0 0 1px rgba(8, 183, 197, 0.3);
+      transition: transform 0.3s ease;
+    }
+
+    .hero-icon:hover {
+      transform: translateY(-2px) scale(1.02);
+    }
+
+    .tag-badge {
+      display: inline-block;
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--cyan);
+      background: var(--cyan-glow);
+      padding: 4px 14px;
+      border-radius: 100px;
+      border: 1px solid rgba(8, 183, 197, 0.2);
+      margin-bottom: 12px;
+    }
+
+    .hero-title {
+      font-size: clamp(2rem, 5vw, 2.75rem);
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      color: var(--text-primary);
+      margin-bottom: 10px;
+    }
+
+    .hero-desc {
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin: 0 auto;
+      font-weight: 400;
+    }
+
+    /* Guarantees Row & Card Finishing */
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-bottom: 48px;
+    }
+
+    .summary-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 22px 18px;
+      text-align: center;
+      box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5), inset 0 1px 0 0 rgba(255, 255, 255, 0.05);
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .summary-card:hover {
+      border-color: var(--border-accent);
+      transform: translateY(-3px);
+      box-shadow: 0 14px 32px -10px rgba(8, 183, 197, 0.18), inset 0 1px 0 0 rgba(8, 183, 197, 0.2);
+    }
+
+    .summary-title {
+      font-size: 0.98rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 6px;
+    }
+
+    .summary-text {
+      font-size: 0.84rem;
+      color: var(--text-secondary);
+      line-height: 1.45;
+    }
+
+    /* Layout Grid */
+    .layout-grid {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 36px;
+      align-items: start;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      position: sticky;
+      top: 85px;
+    }
+
+    .toc-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 22px;
+      margin-bottom: 20px;
+      box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5), inset 0 1px 0 0 rgba(255, 255, 255, 0.05);
+    }
+
+    .toc-header {
+      font-size: 0.75rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+    }
+
+    .toc-menu {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .toc-item {
+      padding: 8px 12px;
+      border-radius: var(--radius-sm);
+      text-decoration: none;
+      color: var(--text-secondary);
+      font-size: 0.88rem;
+      font-weight: 500;
+      transition: all 0.15s ease;
+    }
+
+    .toc-item:hover {
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--cyan);
+    }
+
+    .app-info-card {
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+    }
+
+    .info-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 9px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .info-row:last-child {
+      border-bottom: none;
+    }
+
+    .info-label {
+      font-size: 0.76rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+    }
+
+    .info-val {
+      font-family: 'Outfit', sans-serif;
+      color: var(--text-primary);
+      font-weight: 600;
+      font-size: 0.84rem;
+    }
+
+    /* Main Content Article Card */
+    .content-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xl);
+      padding: 48px;
+      box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.6), inset 0 1px 0 0 rgba(255, 255, 255, 0.06);
+    }
+
+    .doc-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 24px;
+      margin-bottom: 40px;
+      border-bottom: 1px solid var(--border);
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .doc-title {
+      font-size: 1.75rem;
+      font-weight: 800;
+      color: var(--text-primary);
+      letter-spacing: -0.01em;
+    }
+
+    .doc-date {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      background: rgba(255, 255, 255, 0.03);
+      padding: 4px 12px;
+      border-radius: 100px;
+      border: 1px solid var(--border);
+    }
+
+    /* Sections */
+    section {
+      margin-bottom: 44px;
+      scroll-margin-top: 100px;
+    }
+
+    section:last-child {
+      margin-bottom: 0;
+    }
+
+    h2 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .num-pill {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--cyan);
+      background: var(--cyan-glow);
+      padding: 3px 10px;
+      border-radius: 8px;
+      border: 1px solid rgba(8, 183, 197, 0.25);
+    }
+
+    p {
+      color: var(--text-secondary);
+      margin-bottom: 16px;
+      font-size: 0.98rem;
+    }
+
+    p strong {
+      color: var(--text-primary);
+    }
+
+    /* Clean Check Lists */
+    ul.clean-list {
+      list-style: none;
+      margin-bottom: 24px;
+    }
+
+    ul.clean-list li {
+      position: relative;
+      padding-left: 22px;
+      margin-bottom: 12px;
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+    }
+
+    ul.clean-list li::before {
+      content: "•";
+      position: absolute;
+      left: 4px;
+      color: var(--cyan);
+      font-weight: bold;
+      font-size: 1.1rem;
+    }
+
+    /* Clean Tables */
+    .table-wrap {
+      overflow-x: auto;
+      margin: 24px 0;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      -webkit-overflow-scrolling: touch;
+      box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.04);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.9rem;
+    }
+
+    th {
+      background: rgba(255, 255, 255, 0.025);
+      color: var(--text-primary);
+      font-weight: 700;
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    td {
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--border);
+      color: var(--text-secondary);
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    tr:nth-child(even) td {
+      background: rgba(255, 255, 255, 0.01);
+    }
+
+    .pill-pro {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 100px;
+      background: var(--cyan-glow);
+      color: var(--cyan);
+      font-weight: 700;
+      font-size: 0.78rem;
+    }
+
+    .pill-free {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 100px;
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--text-muted);
+      font-weight: 700;
+      font-size: 0.78rem;
+    }
+
+    /* Minimal Callouts */
+    .callout {
+      border-radius: var(--radius-md);
+      padding: 20px 24px;
+      margin: 24px 0;
+      border-left: 4px solid var(--cyan);
+      background: rgba(8, 183, 197, 0.05);
+      box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.03);
+    }
+
+    .callout-red {
+      border-left-color: var(--red);
+      background: var(--red-glow);
+    }
+
+    .callout-title {
+      font-weight: 700;
+      font-size: 0.95rem;
+      margin-bottom: 6px;
+      color: var(--text-primary);
+    }
+
+    .callout-red .callout-title {
+      color: #fca5a5;
+    }
+
+    .callout p {
+      margin-bottom: 0;
+      font-size: 0.92rem;
+    }
+
+    .contact-link {
+      color: var(--cyan);
+      text-decoration: none;
+      font-weight: 600;
+      transition: opacity 0.2s ease;
+    }
+
+    .contact-link:hover {
+      opacity: 0.8;
+    }
+
+    /* Back to top button */
+    .top-btn {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      width: 44px;
+      height: 44px;
+      background: var(--surface-light);
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+      transition: all 0.25s ease;
+      z-index: 90;
+    }
+
+    .top-btn:hover {
+      border-color: var(--cyan);
+      color: var(--cyan);
+      transform: translateY(-3px);
+    }
+
+    /* Footer */
+    footer {
+      max-width: 1100px;
+      margin: 60px auto 0;
+      padding: 28px 24px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      color: var(--text-muted);
+      font-size: 0.86rem;
+    }
+
+    footer a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    footer a:hover {
+      color: var(--cyan);
+    }
+
+    /* Print optimization */
+    @media print {
+      body { background: #fff; color: #000; }
+      .bg-gradient, .nav-bar, .sidebar, .summary-grid, .top-btn, footer { display: none !important; }
+      .layout-grid { display: block; }
+      .content-card { border: none; padding: 0; box-shadow: none; }
+      h1, h2, h3 { color: #000 !important; }
+      p, li, td { color: #333 !important; }
+    }
+
+    /* Responsive Media Queries */
+    @media (max-width: 992px) {
+      .summary-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 880px) {
+      .layout-grid { grid-template-columns: 1fr; }
+      .sidebar { display: none; }
+      .content-card { padding: 32px 24px; }
+    }
+
+    @media (max-width: 580px) {
+      .container { padding: 32px 16px; }
+      .summary-grid { grid-template-columns: 1fr; gap: 12px; }
+      .hero-title { font-size: 2rem; }
+      .content-card { padding: 24px 18px; border-radius: var(--radius-lg); }
+      .nav-status { display: none; }
+      .nav-content { padding: 12px 16px; }
+      .tab-item { padding: 5px 14px; font-size: 0.8rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-gradient"></div>
+
+  <!-- Navigation Bar -->
+  <nav class="nav-bar">
+    <div class="nav-content">
+      <a href="privacy.html" class="brand">
+        <img src="app_icon.png" alt="FastPure Logo" class="brand-icon">
+        <span class="brand-name">FastPure</span>
+      </a>
+
+      <div class="nav-status">
+        <span class="pulse"></span>
+        <span>100% Offline & Private</span>
+      </div>
+
+      <div class="tab-group">
+        <a href="privacy.html" class="tab-item">Privacy Policy</a>
+        <a href="terms.html" class="tab-item active">Terms of Service</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+    <!-- Hero -->
+    <header class="hero">
+      <div class="hero-icon-stage">
+        <div class="hero-icon-glow"></div>
+        <img src="app_icon.png" alt="FastPure Icon" class="hero-icon">
+      </div>
+      <div>
+        <span class="tag-badge">Legal Documentation</span>
+      </div>
+      <h1 class="hero-title">Terms of Service</h1>
+      <p class="hero-desc">Fair, transparent, subscription-free software licensing terms for the FastPure intermittent fasting app.</p>
+    </header>
+
+    <!-- Key Principles Grid -->
+    <div class="summary-grid">
+      <div class="summary-card">
+        <div class="summary-title">Simple Terms</div>
+        <div class="summary-text">Clear user-first terms with zero hidden subscription clauses.</div>
+      </div>
+      <div class="summary-card">
+        <div class="summary-title">Educational Tool</div>
+        <div class="summary-text">Informational time tracker only. Not a medical service.</div>
+      </div>
+      <div class="summary-card">
+        <div class="summary-title">Pay Once Lifetime</div>
+        <div class="summary-text">Single one-time purchase. Never pay recurring subscription fees.</div>
+      </div>
+      <div class="summary-card">
+        <div class="summary-title">100% Offline</div>
+        <div class="summary-text">Runs on your local device. You maintain full data sovereignty.</div>
+      </div>
+    </div>
+
+    <!-- Main Content Layout -->
+    <div class="layout-grid">
+      <!-- Sidebar TOC -->
+      <aside class="sidebar">
+        <div class="toc-card">
+          <div class="toc-header">Contents</div>
+          <nav class="toc-menu">
+            <a href="#acceptance" class="toc-item">1. Acceptance of Terms</a>
+            <a href="#description" class="toc-item">2. Description of App</a>
+            <a href="#medical" class="toc-item">3. Medical Disclaimer</a>
+            <a href="#purchases" class="toc-item">4. Purchases & Billing</a>
+            <a href="#license" class="toc-item">5. License & IP</a>
+            <a href="#conduct" class="toc-item">6. User Responsibilities</a>
+            <a href="#backups" class="toc-item">7. Data & Backups</a>
+            <a href="#warranties" class="toc-item">8. Disclaimer of Warranties</a>
+            <a href="#liability" class="toc-item">9. Limitation of Liability</a>
+            <a href="#contact" class="toc-item">10. Contact Us</a>
+          </nav>
+        </div>
+
+        <div class="toc-card app-info-card">
+          <div class="toc-header">App Overview</div>
+          <div class="info-row">
+            <span class="info-label">Application</span>
+            <span class="info-val">FastPure</span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">License Type</span>
+            <span class="info-val">Lifetime Access</span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">Billing Model</span>
+            <span class="info-val">One-Time (Store Local Pricing)</span>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Main Document -->
+      <main class="content-card">
+        <div class="doc-meta">
+          <h2 class="doc-title" style="margin-bottom:0;">Terms of Service</h2>
+          <span class="doc-date">Last Updated: August 15, 2026</span>
+        </div>
+
+        <section id="acceptance">
+          <h2><span class="num-pill">01</span> Acceptance of Terms</h2>
+          <p>By downloading, installing, accessing, or using <strong>FastPure</strong> (the "Application"), you agree to be bound by these Terms of Service. If you do not agree, please do not install or use the Application.</p>
+        </section>
+
+        <section id="description">
+          <h2><span class="num-pill">02</span> Description of Application</h2>
+          <p>FastPure is a 100% offline, private intermittent fasting utility designed to help users track fasting and eating windows (including 14:10, 16:8, 18:6, 20:4, OMAD 23:1, and custom schedules), metabolic stages (digestion, fat burning, autophagy), streaks, and local notifications.</p>
+        </section>
+
+        <section id="medical">
+          <h2><span class="num-pill">03</span> Medical & Health Disclaimer</h2>
+          <div class="callout callout-red">
+            <div class="callout-title">Important Medical Notice</div>
+            <p><strong>FastPure is a time-tracking utility and DOES NOT provide medical advice, diagnosis, or treatment.</strong></p>
+            <p>Metabolic stage estimates (digestion, fat burning shift, autophagy peak, deep autophagy) are educational reference indicators only. Intermittent fasting is not suitable for everyone (including pregnant or nursing individuals, minors under 18, persons with eating disorder history, or individuals with chronic metabolic conditions). Consult a medical professional before starting any fasting routine.</p>
+          </div>
+        </section>
+
+        <section id="purchases">
+          <h2><span class="num-pill">04</span> In-App Purchase & Billing Terms</h2>
+          <p>FastPure uses a transparent, subscription-free payment model:</p>
+          
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Feature</th>
+                  <th>Free Tier</th>
+                  <th>FastPure Pro Lifetime</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Price</strong></td>
+                  <td><span class="pill-free">FREE</span></td>
+                  <td><span class="pill-pro">Single Payment (Store Local Pricing)</span></td>
+                </tr>
+                <tr>
+                  <td><strong>16:8 Protocol Access</strong></td>
+                  <td><span class="pill-free">Free Forever</span></td>
+                  <td><span class="pill-pro">Unlimited Lifetime</span></td>
+                </tr>
+                <tr>
+                  <td><strong>All Protocols (14:10, 18:6, 20:4, OMAD, Custom)</strong></td>
+                  <td>Locked</td>
+                  <td><span class="pill-pro">Unlocked Forever</span></td>
+                </tr>
+                <tr>
+                  <td><strong>History, Streaks & CSV Export</strong></td>
+                  <td>Basic Logs</td>
+                  <td><span class="pill-pro">Full History + CSV Export</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Local Notifications & Widgets</strong></td>
+                  <td>End-of-Fast Alert + Home Widget</td>
+                  <td><span class="pill-pro">Metabolic Milestone Alerts + Widgets</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Recurring Subscriptions</strong></td>
+                  <td><span class="pill-free">NONE</span></td>
+                  <td><span class="pill-pro">NEVER (0€/yr)</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <ul class="clean-list">
+            <li><strong>Store Billing:</strong> Payments for the one-time <strong>FastPure Pro</strong> purchase are processed entirely by the Apple App Store or Google Play Store under their respective terms, automatically adapting to your regional currency and local taxes.</li>
+            <li><strong>Restoration:</strong> You can restore your lifetime purchase at any time on any device linked to the same Apple ID or Google Account using the "Restore Purchase" button in the app.</li>
+          </ul>
+        </section>
+
+        <section id="license">
+          <h2><span class="num-pill">05</span> Software License & Intellectual Property</h2>
+          <p>FastPure grants you a limited, non-exclusive, non-transferable license to use the Application for personal, non-commercial use. All software code, UI designs, logos, and assets remain the exclusive property of MMP Studio.</p>
+        </section>
+
+        <section id="conduct">
+          <h2><span class="num-pill">06</span> User Conduct</h2>
+          <p>You agree not to modify, reverse engineer, decompile, or tamper with the Application binaries, local storage structures, or license verification logic.</p>
+        </section>
+
+        <section id="backups">
+          <h2><span class="num-pill">07</span> Data Sovereignty & Backups</h2>
+          <p>Because FastPure operates 100% offline with zero cloud servers, we do not maintain remote backups of your fasting data. You retain full control over your data sovereignty and are responsible for manual CSV exports or system-level backups (iCloud / Google Device Backup).</p>
+        </section>
+
+        <section id="warranties">
+          <h2><span class="num-pill">08</span> Disclaimer of Warranties</h2>
+          <p>THE APPLICATION IS PROVIDED "AS IS" AND "AS AVAILABLE" WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO FITNESS FOR A PARTICULAR PURPOSE.</p>
+        </section>
+
+        <section id="liability">
+          <h2><span class="num-pill">09</span> Limitation of Liability</h2>
+          <p>FastPure shall not be liable for any indirect, incidental, or consequential damages resulting from your use of the Application. Total liability is limited to the actual amount paid for FastPure Pro.</p>
+        </section>
+
+        <section id="contact">
+          <h2><span class="num-pill">10</span> Contact Us</h2>
+          <p>If you have any questions regarding these Terms of Service, contact us at <a href="mailto:puludisu.apps@gmail.com" class="contact-link">puludisu.apps@gmail.com</a>.</p>
+        </section>
+      </main>
+    </div>
+
+    <!-- Back to top button -->
+    <a href="#" class="top-btn" title="Back to Top">↑</a>
+
+    <!-- Footer -->
+    <footer>
+      <div>© 2026 MMP Studio. All rights reserved.</div>
+      <div>
+        <a href="privacy.html">Privacy Policy</a> · 
+        <a href="terms.html" style="color:var(--cyan);">Terms of Service</a>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>

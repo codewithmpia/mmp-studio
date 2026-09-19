@@ -17,6 +17,7 @@ dependencies.
 | **LeafPulse** | 100% offline smart plant care journal & calculated watering reminders. | [App Store](https://apps.apple.com/fr/app/leafpulse-arrosage-plantes/id6805659559) | _Coming soon_ |
 | **ChronoPace** | 100% offline haptic, audio & visual running cadence metronome (SPM). | [App Store](https://apps.apple.com/fr/app/chronopace-cadence-running/id6806511004) | _Coming soon_ |
 | **TeleStudio** | 100% offline 4K 60 FPS studio teleprompter with AI voice tracking & Duo Remote. | [App Store](https://apps.apple.com/app/telestudio/id6742398511) | _Coming soon_ |
+| **FastPure** | 100% offline intermittent fasting timer with metabolic stage tracking. | _Coming soon_ | _Coming soon_ |
 
 
 ## Live pages
@@ -39,9 +40,11 @@ GitHub account/organization name once the repo is pushed):
 - TeleStudio — Privacy Policy: `/telestudio/privacy.html`
 - TeleStudio — Terms of Service (EULA): `/telestudio/terms.html`
 - TeleStudio — Support: `/telestudio/support.html`
+- FastPure — Privacy Policy: `/fastpure/privacy.html`
+- FastPure — Terms of Service (EULA): `/fastpure/terms.html`
 
-> The `/notaro/privacy.html`, `/skanzo/privacy.html`, `/leafpulse/privacy.html`, `/chronopace/privacy.html`, and
-> `/telestudio/privacy.html` URLs are the ones to provide in App Store Connect and Google
+> The `/notaro/privacy.html`, `/skanzo/privacy.html`, `/leafpulse/privacy.html`, `/chronopace/privacy.html`,
+> `/telestudio/privacy.html`, and `/fastpure/privacy.html` URLs are the ones to provide in App Store Connect and Google
 > Play Console as each app's privacy policy link.
 
 ## Deploying
